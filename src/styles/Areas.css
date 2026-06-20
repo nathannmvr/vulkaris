@@ -1,0 +1,103 @@
+/* Areas — ciano + laranja */
+.areas {
+  background: var(--color-bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.areas__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* Card */
+.areas__card {
+  position: relative;
+  padding: 30px 26px;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  cursor: default;
+  overflow: hidden;
+  border-color: rgba(255,255,255,0.07);
+  animation: fade-in-up 0.6s ease var(--animation-delay) both;
+}
+
+.areas__card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--card-color), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.areas__card:hover::before { opacity: 1; }
+.areas__card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255,255,255,0.13);
+}
+
+.areas__card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, var(--card-color), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+}
+
+.areas__card:hover .areas__card-glow { opacity: 0.07; }
+
+/* Icon */
+.areas__icon {
+  margin-bottom: 18px;
+  color: var(--card-color);
+  line-height: 1;
+  transition: transform var(--transition-base);
+}
+
+.areas__card:hover .areas__icon { transform: scale(1.1) rotate(-4deg); }
+
+.areas__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.areas__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.areas__tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.areas__tag {
+  padding: 4px 11px;
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-tag-border);
+  border-radius: 50px;
+  font-size: 0.73rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.areas__card:hover .areas__tag {
+  border-color: var(--color-tag-border-hover);
+  background: var(--color-tag-bg-hover);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) { .areas__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  {
+  .areas__grid { grid-template-columns: 1fr; }
+  .areas__card { padding: 22px 18px; }
+}

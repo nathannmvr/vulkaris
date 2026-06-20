@@ -1,0 +1,438 @@
+/* ==========================================
+   VULKARIS ROBOTICS TEAM - GLOBAL STYLES
+   Paleta baseada na logo oficial:
+   - Azul ciano vibrante: #4FC3F7 (texto VULKARIS)
+   - Laranja fogo: #FF6B1A (faíscas / cabelo)
+   - Cinza escuro: #1E2532 (fundo engrenagem)
+   - Cinza metálico: #8C9BAD (detalhes)
+   ========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ── Cores base ── */
+  --color-bg-primary:    #0f1117;
+  --color-bg-secondary:  #151a24;
+  --color-bg-card:       #1a2030;
+  --color-bg-card-hover: #1e2540;
+  --color-surface:       #1e2532;
+
+  /* ── Azul ciano (primário da logo) ── */
+  --color-primary:       #4FC3F7;
+  --color-primary-light: #81D4FA;
+  --color-primary-dark:  #0288D1;
+  --color-primary-glow:  rgba(79, 195, 247, 0.25);
+  --color-primary-glow-strong: rgba(79, 195, 247, 0.45);
+
+  /* ── Laranja fogo (acento da logo) ── */
+  --color-accent:        #FF6B1A;
+  --color-accent-light:  #FF8C4A;
+  --color-accent-dim:    #CC5510;
+  --color-accent-glow:   rgba(255, 107, 26, 0.28);
+  --color-accent-glow-strong: rgba(255, 107, 26, 0.5);
+
+  /* ── Cinza metálico (engrenagem) ── */
+  --color-steel:         #8C9BAD;
+  --color-steel-dark:    #5A6878;
+
+  /* ── Texto ── */
+  --color-text-primary:  #F0F4F8;
+  --color-text-secondary:#A8B8CC;
+  --color-text-muted:    #5A6878;
+  
+  --color-text-gradient-start: #ffffff;
+  --color-text-gradient-end:   var(--color-primary);
+
+  /* ── Bordas ── */
+  --color-border:        rgba(79, 195, 247, 0.18);
+  --color-border-accent: rgba(255, 107, 26, 0.3);
+  --color-border-steel:  rgba(140, 155, 173, 0.2);
+
+  /* ── Elementos específicos ── */
+  --color-glass:         rgba(26, 32, 48, 0.75);
+  --color-btn-primary-text: #0a0e15;
+  --color-tag-bg:        rgba(255, 255, 255, 0.04);
+  --color-tag-border:    rgba(255, 255, 255, 0.09);
+  --color-tag-bg-hover:  rgba(255, 255, 255, 0.08);
+  --color-tag-border-hover: rgba(255, 255, 255, 0.18);
+
+  /* ── Tipografia ── */
+  --font-display: 'Orbitron', monospace;
+  --font-body:    'Inter', sans-serif;
+
+  /* ── Espaçamento ── */
+  --section-padding: 100px 0;
+  --container-max:   1200px;
+
+  /* ── Border radius ── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* ── Transições ── */
+  --transition-fast: 0.18s ease;
+  --transition-base: 0.28s ease;
+  --transition-slow: 0.5s ease;
+
+  /* ── Sombras ── */
+  --shadow-glow:        0 0 28px var(--color-primary-glow);
+  --shadow-glow-accent: 0 0 28px var(--color-accent-glow);
+  --shadow-card:        0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] {
+  --color-bg-primary:    #f2f9fd;
+  --color-bg-secondary:  #e6f2f9;
+  --color-bg-card:       #ffffff;
+  --color-bg-card-hover: #f1f5f9;
+  --color-surface:       #ffffff;
+
+  --color-primary:       #0288D1;
+  --color-primary-light: #4FC3F7;
+  --color-primary-dark:  #01579B;
+  --color-primary-glow:  rgba(2, 136, 209, 0.15);
+  --color-primary-glow-strong: rgba(2, 136, 209, 0.3);
+
+  --color-accent:        #E65100;
+  --color-accent-light:  #FF6B1A;
+  --color-accent-dim:    #B23C00;
+  --color-accent-glow:   rgba(230, 81, 0, 0.15);
+  --color-accent-glow-strong: rgba(230, 81, 0, 0.3);
+
+  --color-text-primary:  #0f1117;
+  --color-text-secondary:#334155;
+  --color-text-muted:    #64748b;
+
+  --color-text-gradient-start: #0f1117;
+  --color-text-gradient-end:   var(--color-primary-dark);
+
+  --color-border:        rgba(2, 136, 209, 0.2);
+  --color-border-accent: rgba(230, 81, 0, 0.2);
+  --color-border-steel:  rgba(140, 155, 173, 0.25);
+  
+  --color-glass:         rgba(255, 255, 255, 0.85);
+  --color-btn-primary-text: #ffffff;
+  --color-tag-bg:        rgba(2, 136, 209, 0.06);
+  --color-tag-border:    rgba(2, 136, 209, 0.15);
+  --color-tag-bg-hover:  rgba(2, 136, 209, 0.12);
+  --color-tag-border-hover: rgba(2, 136, 209, 0.25);
+  
+  --shadow-glow:        0 0 20px var(--color-primary-glow);
+  --shadow-glow-accent: 0 0 20px var(--color-accent-glow);
+  --shadow-card:        0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--color-bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* ── Container ── */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Section ── */
+.section { 
+  padding: var(--section-padding); 
+  position: relative;
+}
+
+/* ── Section Title ── */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, var(--color-text-gradient-start) 0%, var(--color-text-gradient-end) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 56px;
+  line-height: 1.75;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Divider ── */
+.divider {
+  width: 72px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: 14px auto 30px;
+  border-radius: 2px;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 30px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover::before { left: 100%; }
+
+/* Primário — azul ciano */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  color: var(--color-btn-primary-text);
+  font-weight: 700;
+  box-shadow: 0 4px 18px var(--color-primary-glow);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--color-primary-glow-strong);
+}
+
+/* Acento — laranja fogo */
+.btn-accent {
+  background: linear-gradient(135deg, var(--color-accent-dim), var(--color-accent));
+  color: #fff;
+  box-shadow: 0 4px 18px var(--color-accent-glow);
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--color-accent-glow-strong);
+}
+
+/* Outline — ciano */
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--color-primary-glow);
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-block;
+  padding: 5px 16px;
+  background: rgba(79, 195, 247, 0.1);
+  border: 1px solid var(--color-border);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  background: var(--color-glass);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Keyframes ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes logo-levitate {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+  }
+  50% { 
+    transform: translateY(-14px) scale(1.03); 
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 18px var(--color-primary-glow); }
+  50%       { box-shadow: 0 0 38px var(--color-primary-glow-strong), 0 0 70px var(--color-primary-glow); }
+}
+
+@keyframes scan-line {
+  0%   { top: -100%; }
+  100% { top: 100%; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.8s ease forwards; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  :root { --section-padding: 68px 0; }
+  .section-title { font-size: 1.75rem; }
+  .btn { padding: 11px 22px; font-size: 0.93rem; }
+}
+
+@media (max-width: 480px) {
+  :root { --section-padding: 50px 0; }
+}
+
+/* ============================================================
+   SCROLL REVEAL — classes de animação acionadas pelo
+   IntersectionObserver via hook useScrollReveal / useStaggerReveal
+   ============================================================ */
+
+/* ── Estado inicial (hidden) ── */
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.reveal-fade {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity  0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up    { transform: translateY(52px); }
+.reveal-left  { transform: translateX(-52px); }
+.reveal-right { transform: translateX(52px); }
+.reveal-scale { transform: scale(0.88); }
+.reveal-fade  { /* só opacity */ }
+
+/* ── Estado visível ── */
+.reveal-up.is-revealed,
+.reveal-left.is-revealed,
+.reveal-right.is-revealed,
+.reveal-scale.is-revealed,
+.reveal-fade.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Variações de delay — úteis para stagger manual ── */
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+/* ── Linha de progresso de scroll (topo da página) ── */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px var(--color-primary-glow);
+  pointer-events: none;
+}
+
+/* ── Separador animado entre seções ── */
+.section-divider {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  margin: 0;
+  z-index: 10;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-accent), transparent);
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-divider.is-revealed::before {
+  width: 100%;
+}
+
+/* ── Respeitar preferências de acessibilidade ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .scroll-progress { display: none; }
+}

@@ -1,0 +1,324 @@
+/* ==========================================
+   HERO — paleta ciano + laranja Vulkaris
+   ========================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 100px 0 120px;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Background ── */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(79, 195, 247, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 195, 247, 0.06) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  pointer-events: none;
+}
+
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(64px);
+}
+
+/* Ciano — topo direita */
+.hero__orb--1 {
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.22) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: float 9s ease-in-out infinite;
+}
+
+/* Laranja — baixo esquerda */
+.hero__orb--2 {
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(255, 107, 26, 0.18) 0%, transparent 70%);
+  bottom: -60px; left: -80px;
+  animation: float 11s ease-in-out infinite reverse;
+}
+
+/* Laranja fraco — centro */
+.hero__orb--3 {
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255, 107, 26, 0.28) 0%, transparent 70%);
+  top: 38%; left: 42%;
+  animation: float 6s ease-in-out infinite 2s;
+}
+
+/* Partículas */
+.hero__particle {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  left: var(--x); top: var(--y);
+  animation: float 6s ease-in-out infinite var(--delay);
+  pointer-events: none;
+}
+
+.hero__particle:nth-child(odd) {
+  background: var(--color-primary);
+  box-shadow: 0 0 6px var(--color-primary);
+}
+.hero__particle:nth-child(even) {
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+}
+
+/* Scan line */
+.hero__scan {
+  position: absolute;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.25), transparent);
+  animation: scan-line 4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Content ── */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.hero__badge-wrapper { display: flex; }
+.hero__badge { animation: fade-in-up 0.6s ease forwards; }
+
+/* Title */
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  animation: fade-in-up 0.8s ease 0.1s both;
+}
+
+.hero__title-vulkaris {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: 5px;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--color-text-gradient-start) 0%, var(--color-primary) 55%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 28px rgba(79, 195, 247, 0.35));
+}
+
+.hero__title-sub {
+  font-family: var(--font-display);
+  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 8px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.hero__tagline {
+  font-size: clamp(0.97rem, 2.1vw, 1.2rem);
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  animation: fade-in-up 0.8s ease 0.2s both;
+}
+
+.hero__description {
+  font-size: 0.97rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  animation: fade-in-up 0.8s ease 0.3s both;
+}
+
+/* Actions */
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  animation: fade-in-up 0.8s ease 0.4s both;
+}
+
+/* Stats */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 8px;
+  animation: fade-in-up 0.8s ease 0.5s both;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__stat-number {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.hero__stat-label {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.hero__stat-divider {
+  width: 1px; height: 38px;
+  background: var(--color-border);
+}
+
+/* ── Visual / Logo ── */
+.hero__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 1s ease 0.3s both;
+}
+
+.hero__image-wrapper {
+  position: relative;
+  width: 400px; max-width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo real da equipe — fundo branco, usar border-radius e filtro */
+.hero__logo-img {
+  width: 72.5%; height: 72.5%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter:
+    drop-shadow(0 0 24px rgba(79, 195, 247, 0.45))
+    drop-shadow(0 0 60px rgba(255, 107, 26, 0.3));
+  animation: logo-levitate 6s ease-in-out infinite;
+}
+
+/* Anéis giratórios — ciano + laranja */
+.hero__image-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  animation: spin-ring linear infinite;
+}
+
+.hero__image-ring--1 {
+  width: 82.5%; height: 82.5%;
+  border-color: rgba(79, 195, 247, 0.45);
+  animation-duration: 12s;
+}
+
+.hero__image-ring--2 {
+  width: 92.5%; height: 92.5%;
+  border-color: rgba(255, 107, 26, 0.28);
+  animation-duration: 19s;
+  animation-direction: reverse;
+}
+
+.hero__image-ring--3 {
+  width: 102.5%; height: 102.5%;
+  border-color: rgba(79, 195, 247, 0.14);
+  animation-duration: 26s;
+  border-style: dashed;
+}
+
+@keyframes spin-ring {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Scroll Indicator */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 38px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  animation: fade-in 1.5s ease 1s both;
+}
+
+.hero__scroll-text {
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.hero__scroll-line {
+  width: 2px; height: 38px;
+  background: rgba(79, 195, 247, 0.2);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__scroll-dot {
+  width: 100%; height: 12px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+  border-radius: 2px;
+  animation: scroll-dot 2s ease-in-out infinite;
+}
+
+@keyframes scroll-dot {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .hero__content     { align-items: center; }
+  .hero__badge-wrapper { justify-content: center; }
+  .hero__stats { 
+    width: 100%;
+    justify-content: center; 
+  }
+  .hero__stat {
+    flex: 1;
+    align-items: center;
+    text-align: center;
+  }
+  .hero__actions     { justify-content: center; }
+  .hero__title-vulkaris { letter-spacing: 3px; }
+  .hero__visual      { order: -1; }
+  .hero__image-wrapper { width: 310px; }
+}
+
+@media (max-width: 480px) {
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { justify-content: center; }
+}

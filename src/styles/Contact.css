@@ -1,0 +1,171 @@
+/* Contact — ciano + laranja */
+.contact {
+  background: var(--color-bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* Cards */
+.contact__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact__card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 26px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact__card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--contact-color);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.contact__card:hover {
+  transform: translateX(4px);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+}
+
+.contact__card:hover::before { opacity: 1; }
+
+.contact__card-icon {
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+  display: flex;
+}
+
+.contact__card:hover .contact__card-icon { transform: scale(1.15); }
+
+.contact__card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact__card-label {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.contact__card-value {
+  font-size: 0.93rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.contact__card-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--contact-color);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.contact__card-action:hover {
+  background: var(--contact-color);
+  color: #0f1117;
+  border-color: var(--contact-color);
+  transform: scale(1.1);
+}
+
+/* Instagram Highlight */
+.contact__instagram {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border-color: rgba(255, 107, 26, 0.28);
+}
+
+.contact__instagram-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at top right,   rgba(255, 107, 26, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(79, 195, 247, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.contact__instagram-content {
+  position: relative;
+  z-index: 1;
+  padding: 44px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+@keyframes pulse-icon-accent {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(255, 107, 26, 0.4)); }
+  50%       { filter: drop-shadow(0 0 28px rgba(255, 107, 26, 0.8)); }
+}
+
+.contact__instagram-icon {
+  color: var(--color-accent);
+  animation: pulse-icon-accent 3s ease-in-out infinite;
+}
+
+.contact__instagram-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 1px;
+}
+
+.contact__instagram-handle {
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.contact__instagram-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 290px;
+}
+
+.contact__instagram-btn { margin-top: 8px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact__layout { grid-template-columns: 1fr; }
+  .contact__instagram-content { padding: 30px 24px; }
+}
