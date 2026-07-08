@@ -1,68 +1,24 @@
+import { useState } from 'react';
 import '../styles/Team.css';
-import { IconCode, IconZap, IconBox, IconGear, IconBrush } from './Icons';
+import { IconInstagram, IconCopy, IconCheck } from './Icons';
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
-
-const members = [
-  {
-    id: 'nathan',
-    name: 'Nathan',
-    role: 'Programação',
-    description: 'Programação dos robôs e apoio nas integrações do sistema.',
-    icon: <IconCode size={30} />,
-    color: '#4FC3F7',
-    initials: 'N',
-  },
-  {
-    id: 'victor',
-    name: 'Victor',
-    role: 'Eletrônica',
-    description: 'Eletrônica dos robôs, montagem elétrica e integração dos componentes.',
-    icon: <IconZap size={30} />,
-    color: '#FF6B1A',
-    initials: 'V',
-  },
-  {
-    id: 'ingrid',
-    name: 'Ingrid',
-    role: 'Eletrônica',
-    description: 'Eletrônica dos robôs, montagem elétrica e apoio na integração dos componentes.',
-    icon: <IconZap size={30} />,
-    color: '#81D4FA',
-    initials: 'I',
-  },
-  {
-    id: 'antonio',
-    name: 'Antônio',
-    role: 'Modelagem 3D',
-    description: 'Modelagem 3D, estrutura mecânica e design dos robôs.',
-    icon: <IconBox size={30} />,
-    color: '#FF8C4A',
-    initials: 'A',
-  },
-  {
-    id: 'pedro',
-    name: 'Pedro',
-    role: 'Suporte Técnico',
-    description: 'Apoio geral, organização, integração da equipe e suporte técnico.',
-    icon: <IconGear size={30} />,
-    color: '#4FC3F7',
-    initials: 'P',
-  },
-  {
-    id: 'beatriz',
-    name: 'Beatriz',
-    role: 'Mídia & Design',
-    description: 'Mídia, divulgação, identidade visual e produção de conteúdos da equipe.',
-    icon: <IconBrush size={30} />,
-    color: '#FF6B1A',
-    initials: 'B',
-  },
-];
+import { members } from './members';
 
 export default function Team() {
   const headerRef = useScrollReveal({ threshold: 0.3 });
   const gridRef = useStaggerReveal({ staggerMs: 120, threshold: 0.1 });
   const ctaRef = useScrollReveal({ threshold: 0.5 });
+  const [copiedId, setCopiedId] = useState(null);
+
+  const handleCopy = (e, text, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => {
+      setCopiedId(null);
+    }, 2000);
+  };
 
   return (
     <section id="equipe" className="section team" aria-labelledby="team-title">
@@ -91,7 +47,15 @@ export default function Team() {
 
               <div className="team__avatar-wrapper">
                 <div className="team__avatar" aria-hidden="true">
-                  <span className="team__avatar-icon">{member.icon}</span>
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={`Foto de ${member.name}`}
+                      className="team__avatar-img"
+                    />
+                  ) : (
+                    <span className="team__avatar-icon">{member.icon}</span>
+                  )}
                 </div>
                 <div className="team__avatar-ring" aria-hidden="true" />
               </div>
@@ -100,6 +64,28 @@ export default function Team() {
                 <h3 className="team__name">{member.name}</h3>
                 <span className="team__role">{member.role}</span>
                 <p className="team__desc">{member.description}</p>
+                {member.instagram && (
+                  <div className="team__instagram-wrapper">
+                    <a
+                      href={`https://instagram.com/${member.instagram.replace('@', '')}`}
+                      className="team__instagram"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Instagram de ${member.name}`}
+                    >
+                      <IconInstagram size={15} />
+                      <span>{member.instagram}</span>
+                    </a>
+                    <button
+                      className="team__copy-btn"
+                      onClick={(e) => handleCopy(e, member.instagram, member.id)}
+                      aria-label={`Copiar Instagram de ${member.name}`}
+                      title="Copiar usuário"
+                    >
+                      {copiedId === member.id ? <IconCheck size={13} /> : <IconCopy size={13} />}
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="team__card-line" aria-hidden="true" />

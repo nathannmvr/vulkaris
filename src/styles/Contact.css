@@ -166,6 +166,17 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .contact__layout { grid-template-columns: 1fr; }
-  .contact__instagram-content { padding: 30px 24px; }
+  .contact__layout {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+  .contact__cards,
+  .contact__instagram {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .contact__instagram-content {
+    padding: 30px 24px;
+  }
 }

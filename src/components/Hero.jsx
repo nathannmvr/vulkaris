@@ -1,6 +1,7 @@
 import '../styles/Hero.css';
 import { IconPlay, IconInstagram, IconPhone } from './Icons';
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
+import { members } from './members';
 
 export default function Hero() {
   const contentRef = useStaggerReveal({ staggerMs: 150 });
@@ -72,8 +73,8 @@ export default function Hero() {
 
           <div className="hero__stats reveal-up" aria-label="Estatísticas da equipe" data-stagger>
             <div className="hero__stat">
-              <span className="hero__stat-number">6</span>
-              <span className="hero__stat-label">Integrantes</span>
+              <span className="hero__stat-number">{members.length}</span>
+              <span className="hero__stat-label">Membros</span>
             </div>
             <div className="hero__stat-divider" aria-hidden="true" />
             <div className="hero__stat">

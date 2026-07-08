@@ -70,6 +70,26 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
+
+            {/* Parceiros */}
+            <div className="footer__partners">
+              <h3 className="footer__nav-title">Parceiros</h3>
+              <div className="footer__partners-list">
+                <div className="footer__partner-group">
+                  <span className="footer__partner-label footer__partner-label--featured">Parceiro Principal</span>
+                  <a href="https://portal.ifpe.edu.br/belo-jardim" target="_blank" rel="noopener noreferrer"
+                     className="footer__partner-item footer__partner-item--featured" title="IFPE Campus Belo Jardim">
+                    <img src="/parceiros/ifpe_bj.png" alt="IFPE Belo Jardim Logo" className="footer__partner-img" />
+                  </a>
+                </div>
+                <div className="footer__partner-group">
+                  <span className="footer__partner-label">Apoio</span>
+                  <div className="footer__partner-item" title="UFRPE - UABJ">
+                    <img src="/parceiros/uabj.png" alt="UABJ Logo" className="footer__partner-img" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

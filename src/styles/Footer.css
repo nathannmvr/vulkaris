@@ -21,8 +21,8 @@
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 2fr 1fr 1fr 2.2fr;
+  gap: 44px;
 }
 
 /* Brand */
@@ -133,6 +133,86 @@
   color: var(--color-text-muted);
 }
 
+/* Partners */
+.footer__partners {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__partners-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__partner-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer__partner-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer__partner-label--featured {
+  color: var(--color-primary);
+  text-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+.footer__partner-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  transition: all var(--transition-base);
+  width: fit-content;
+}
+
+.footer__partner-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* IFPE Highlight style */
+.footer__partner-item--featured {
+  border: 2px solid var(--color-primary);
+  padding: 10px 22px;
+  background: #ffffff;
+  box-shadow: 0 0 20px var(--color-primary-glow-strong);
+}
+
+.footer__partner-item--featured:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 25px var(--color-accent-glow-strong);
+}
+
+.footer__partner-img {
+  height: 52px;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(0.2) contrast(1.1);
+  transition: all var(--transition-base);
+}
+
+.footer__partner-item--featured .footer__partner-img {
+  height: 50px;
+  max-width: 190px;
+  filter: none;
+}
+
+.footer__partner-item:hover .footer__partner-img {
+  filter: none;
+}
+
 /* Bottom */
 .footer__bottom {
   border-top: 1px solid rgba(255,255,255,0.05);
@@ -164,9 +244,11 @@
 @media (max-width: 900px) {
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .footer__brand { grid-column: 1 / -1; }
+  .footer__partners { grid-column: 1 / -1; }
 }
 
 @media (max-width: 640px) {
   .footer__grid { grid-template-columns: 1fr; }
+  .footer__partners { grid-column: auto; }
   .footer__bottom-content { flex-direction: column; gap: 6px; text-align: center; }
 }

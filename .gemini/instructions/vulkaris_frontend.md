@@ -26,7 +26,11 @@ Agora execute o que o usuário pediu, seguindo 100% as regras dos dois arquivos 
 - **Componente novo** = `src/components/Nome.jsx` + `src/styles/Nome.css`
 - **Ícones** = sempre em `src/components/Icons.jsx` (SVG inline)
 - **Hooks** = em `src/hooks/`
+- **Integrantes**: Cada membro em `members.jsx` possui a propriedade `instagram` (formato `@usuario`) e opcionalmente `image` (caminho da foto), renderizando a imagem (ou o ícone como fallback) e um botão de copiar usuário ao lado do link do Instagram.
+- **Projetos**: Cada projeto em `Projects.jsx` pode conter as propriedades `github` e `link` (veja mais). Se a propriedade `image` estiver presente, renderiza a imagem em todos os cards (comuns ou destacados). Ao clicar em qualquer card de projeto, um modal de detalhes com glassmorphismo deve ser aberto para exibir o projeto completo.
+- **Parceiros**: Exibidos no rodapé (`Footer.jsx`) usando as imagens em `/public/parceiros/`. O parceiro principal (IFPE) possui destaque com borda ciano brilhante e badge.
 - **PROIBIDO**: TypeScript, Tailwind, CSS-in-JS, libs de UI, libs de ícones
+
 
 ### Estilo Visual
 - **Tema**: Dark futurista sci-fi com glassmorphismo

@@ -5,7 +5,7 @@ import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 const galleryItems = [
   {
     id: 'robot-soccer-1',
-    src: '/robot_soccer.png',
+    src: '/projetos/robot_soccer.png',
     alt: 'Robô futebolista da Vulkaris em ação durante competição',
     label: 'Futebol de Robôs',
     span: 'wide',
@@ -19,7 +19,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-2',
-    src: '/robot_soccer.png',
+    src: '/projetos/robot_soccer.png',
     alt: 'Protótipo de robô desenvolvido pela equipe Vulkaris',
     label: 'Prototipagem',
     span: 'normal',
@@ -33,7 +33,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-3',
-    src: '/robot_soccer.png',
+    src: '/projetos/robot_soccer.png',
     alt: 'Competição de robótica com participação da Vulkaris',
     label: 'Competição',
     span: 'normal',

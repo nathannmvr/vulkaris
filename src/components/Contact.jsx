@@ -1,6 +1,6 @@
 import '../styles/Contact.css';
 import { useState } from 'react';
-import { IconInstagram, IconMail, IconQr, IconCopy, IconCheck, IconExternalLink } from './Icons';
+import { IconInstagram, IconMail, IconCopy, IconCheck, IconExternalLink } from './Icons';
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 const contactItems = [
@@ -21,15 +21,6 @@ const contactItems = [
     href: 'mailto:vulkarisrobotics@gmail.com',
     color: '#4FC3F7',
     external: false,
-  },
-  {
-    id: 'qrcode',
-    icon: <IconQr size={28} />,
-    label: 'QR Code',
-    value: 'Acesse via QR Code em nossos materiais',
-    href: 'https://instagram.com/vulkaris_robotics',
-    color: '#81D4FA',
-    external: true,
   },
 ];
 

@@ -16,15 +16,15 @@ const areas = [
     icon: <IconZap size={36} />,
     title: 'Eletrônica',
     description: 'Projeto de circuitos, integração de sensores e atuadores, montagem elétrica e diagnóstico.',
-    tags: ['Circuitos', 'Sensores', 'Arduino', 'PCB'],
+    tags: ['Circuitos', 'Sensores', 'Arduino', 'PCB', 'IoT'],
     color: '#FF6B1A',
   },
   {
-    id: 'modelagem3d',
+    id: 'modelagem',
     icon: <IconBox size={36} />,
-    title: 'Modelagem 3D',
+    title: 'Modelagem',
     description: 'Design e prototipagem das estruturas mecânicas dos robôs com ferramentas de CAD.',
-    tags: ['CAD', 'Impressão 3D', 'Solidworks', 'Fusão 360'],
+    tags: ['CAD', 'Impressão 3D', 'Solidworks', 'Fusion 360'],
     color: '#81D4FA',
   },
   {
@@ -48,7 +48,7 @@ const areas = [
     icon: <IconTrophy size={36} />,
     title: 'Competições',
     description: 'Participação em torneios de robótica, colocando em prática todo o aprendizado da equipe.',
-    tags: ['Futebol de Robôs', 'Torneios', 'Estratégia', 'Desafios'],
+    tags: ['Torneios', 'Estratégia', 'Desafios'],
     color: '#FF6B1A',
   },
 ];
