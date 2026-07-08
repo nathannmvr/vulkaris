@@ -9,6 +9,7 @@ export default function Team() {
   const gridRef = useStaggerReveal({ staggerMs: 120, threshold: 0.1 });
   const ctaRef = useScrollReveal({ threshold: 0.5 });
   const [copiedId, setCopiedId] = useState(null);
+  const [activeMember, setActiveMember] = useState(null);
 
   const handleCopy = (e, text, id) => {
     e.preventDefault();
@@ -40,8 +41,9 @@ export default function Team() {
               data-stagger
               id={`member-${member.id}`}
               role="listitem"
-              style={{ '--member-color': member.color }}
+              style={{ '--member-color': member.color, cursor: 'pointer' }}
               aria-label={`${member.name} — ${member.role}`}
+              onClick={() => setActiveMember(member)}
             >
               <div className="team__card-glow" aria-hidden="true" />
 
@@ -72,6 +74,7 @@ export default function Team() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Instagram de ${member.name}`}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <IconInstagram size={15} />
                       <span>{member.instagram}</span>
@@ -106,6 +109,76 @@ export default function Team() {
           </a>
         </div>
       </div>
+
+      {/* Modal de Detalhes do Membro */}
+      {activeMember && (
+        <div className="team__modal-overlay" onClick={() => setActiveMember(null)}>
+          <div
+            className="team__modal glass-card"
+            onClick={e => e.stopPropagation()}
+            style={{ '--member-color': activeMember.color }}
+          >
+            <button
+              className="team__modal-close"
+              onClick={() => setActiveMember(null)}
+              aria-label="Fechar modal"
+            >
+              &times;
+            </button>
+
+            <div className="team__modal-glow" aria-hidden="true" />
+
+            <div className="team__modal-content">
+              <div className="team__modal-avatar-wrapper">
+                <div className="team__modal-avatar">
+                  {activeMember.image ? (
+                    <img
+                      src={activeMember.image}
+                      alt={`Foto de ${activeMember.name}`}
+                      className="team__modal-avatar-img"
+                    />
+                  ) : (
+                    <span className="team__modal-avatar-icon">{activeMember.icon}</span>
+                  )}
+                </div>
+                <div className="team__modal-avatar-ring" aria-hidden="true" />
+              </div>
+
+              <h3 className="team__modal-name">{activeMember.name}</h3>
+              <span className="team__modal-role">{activeMember.role}</span>
+              <div className="team__modal-divider" />
+              <p className="team__modal-desc">{activeMember.description}</p>
+
+              {activeMember.instagram && (
+                <div className="team__modal-instagram-section">
+                  <span className="team__modal-instagram-title">Contato</span>
+                  <div className="team__instagram-wrapper">
+                    <a
+                      href={`https://instagram.com/${activeMember.instagram.replace('@', '')}`}
+                      className="team__instagram"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Instagram de ${activeMember.name}`}
+                      onClick={e => e.stopPropagation()}
+                    >
+                      <IconInstagram size={15} />
+                      <span>{activeMember.instagram}</span>
+                    </a>
+                    <button
+                      className="team__copy-btn"
+                      onClick={(e) => handleCopy(e, activeMember.instagram, activeMember.id)}
+                      aria-label={`Copiar Instagram de ${activeMember.name}`}
+                      title="Copiar usuário"
+                    >
+                      {copiedId === activeMember.id ? <IconCheck size={13} /> : <IconCopy size={13} />}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
