@@ -70,15 +70,22 @@ export default function About() {
 
           {/* Imagem */}
           <div className="about__visual reveal-right" ref={visualRef}>
-            <div className="about__image-container">
-              <img
-                src="/team_working.png"
-                alt="Equipe Vulkaris trabalhando em projeto de robótica"
-                className="about__image"
-                loading="lazy"
-              />
-              <div className="about__image-overlay" aria-hidden="true" />
-              <div className="about__image-border"  aria-hidden="true" />
+            <div className="about__visual-wrapper">
+              {/* Elementos decorativos no background */}
+              <div className="about__glow-orb" aria-hidden="true" />
+              <div className="about__tech-ring about__tech-ring--outer" aria-hidden="true" />
+              <div className="about__tech-ring about__tech-ring--inner" aria-hidden="true" />
+
+              <div className="about__image-container">
+                <img
+                  src="/vulkaris.gif"
+                  alt="Logotipo animado da Equipe Vulkaris"
+                  className="about__image"
+                  loading="lazy"
+                />
+                <div className="about__image-overlay" aria-hidden="true" />
+                <div className="about__image-border"  aria-hidden="true" />
+              </div>
             </div>
 
             <div className="about__card-floating glass-card" aria-label="Slogan da equipe">
