@@ -84,9 +84,10 @@ export default function Footer() {
                 </div>
                 <div className="footer__partner-group">
                   <span className="footer__partner-label">Apoio</span>
-                  <div className="footer__partner-item" title="UFRPE - UABJ">
+                  <a href="https://www.uabj.ufrpe.br" target="_blank" rel="noopener noreferrer"
+                     className="footer__partner-item" title="UFRPE - UABJ" aria-label="Acessar site da UABJ UFRPE">
                     <img src="/parceiros/uabj.png" alt="UABJ Logo" className="footer__partner-img" />
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

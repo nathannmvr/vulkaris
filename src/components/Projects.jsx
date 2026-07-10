@@ -1,7 +1,17 @@
 import { useState } from 'react';
 import '../styles/Projects.css';
-import { IconStar, IconFlask, IconRocket, IconInstagram, IconGithub, IconExternalLink } from './Icons';
-import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
+import { IconStar, IconRocket, IconInstagram, IconGithub, IconExternalLink, IconChevronLeft, IconChevronRight } from './Icons';
+import { useScrollReveal } from '../hooks/useScrollReveal';
+
+const getTodayDateWithTime = (hour, minute) => {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const yyyy = today.getFullYear();
+  const hh = String(hour).padStart(2, '0');
+  const min = String(minute).padStart(2, '0');
+  return `${dd}/${mm}/${yyyy} às ${hh}:${min}`;
+};
 
 const projects = [
   {
@@ -15,6 +25,7 @@ const projects = [
     featured: false,
     github: null,
     link: null,
+    date: getTodayDateWithTime(14, 30),
   },
   {
     id: 'combate-robos',
@@ -27,6 +38,7 @@ const projects = [
     featured: false,
     github: null,
     link: 'https://roboclash.vercel.app',
+    date: getTodayDateWithTime(16, 45),
   },
   {
     id: 'automacao-geral',
@@ -39,6 +51,7 @@ const projects = [
     featured: false,
     github: null,
     link: null,
+    date: getTodayDateWithTime(10, 15),
   },
   {
     id: 'prototipagem',
@@ -51,6 +64,7 @@ const projects = [
     featured: false,
     github: null,
     link: null,
+    date: getTodayDateWithTime(11, 0),
   },
   {
     id: 'inmoov',
@@ -63,14 +77,32 @@ const projects = [
     featured: true,
     github: null,
     link: null,
+    date: getTodayDateWithTime(9, 0),
   },
 ];
 
 export default function Projects() {
   const headerRef = useScrollReveal({ threshold: 0.3 });
-  const featuredRef = useStaggerReveal({ staggerMs: 200, threshold: 0.2 });
-  const gridRef = useStaggerReveal({ staggerMs: 150, threshold: 0.1 });
+  const featuredRef = useScrollReveal({ threshold: 0.2 });
+  const gridRef = useScrollReveal({ threshold: 0.1 });
   const [activeProject, setActiveProject] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+
+  const regularProjects = projects.filter(p => !p.featured);
+  const gridItems = [...regularProjects, { id: 'coming-soon', isComingSoon: true }];
+
+  const totalPages = Math.ceil(gridItems.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = gridItems.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Smooth scroll to the projects grid start rather than the very top of section
+    document.getElementById('projects-grid-start')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section id="projetos" className="section projects" aria-labelledby="projects-title">
@@ -86,9 +118,9 @@ export default function Projects() {
         </div>
 
         {/* Projeto em destaque */}
-        <div ref={featuredRef}>
+        <div>
           {projects.filter(p => p.featured).map(project => (
-            <div key={project.id} className="projects__featured glass-card reveal-up" data-stagger id={`project-${project.id}`}
+            <div key={project.id} className="projects__featured glass-card reveal-up" ref={featuredRef} id={`project-${project.id}`}
                  role="article" aria-label={`Projeto em destaque: ${project.title}`}
                  onClick={() => setActiveProject(project)} style={{ cursor: 'pointer' }}>
             <div className="projects__featured-image">
@@ -101,7 +133,7 @@ export default function Projects() {
             </div>
             <div className="projects__featured-content">
               <div className="projects__featured-label">
-                <IconStar size={14} /> Destaque
+                <IconStar size={14} /> Destaque &bull; {project.date}
               </div>
               <h3 className="projects__featured-title">{project.title}</h3>
               <p className="projects__featured-desc">{project.description}</p>
@@ -127,67 +159,109 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="projects__grid" ref={gridRef}>
-          {projects.filter(p => !p.featured).map((project) => (
-            <div key={project.id} className="projects__card glass-card reveal-up" data-stagger id={`project-${project.id}`}
-                 role="article" onClick={() => setActiveProject(project)} style={{ cursor: 'pointer' }}>
-              <div className="projects__card-header">
-                <IconFlask size={28} className="projects__card-icon" />
-                <span className="projects__status-badge projects__status-badge--small"
-                      style={{ '--status-color': project.statusColor }}>
-                  <span className="projects__status-dot" aria-hidden="true" />
-                  {project.status}
-                </span>
-              </div>
-              {project.image && (
-                <div className="projects__card-image">
-                  <img src={project.image} alt={project.title} loading="lazy" />
-                  <div className="projects__card-image-overlay" aria-hidden="true" />
-                </div>
-              )}
-              <h3 className="projects__card-title">{project.title}</h3>
-              <p className="projects__card-desc">{project.description}</p>
-              <div className="projects__tags">
-                {project.tags.map(tag => <span key={tag} className="areas__tag">{tag}</span>)}
-              </div>
-              {(project.github || project.link) && (
-                <div className="projects__card-links">
-                  {project.github && (
-                    <a href={project.github} className="projects__card-link projects__card-link--github" target="_blank" rel="noopener noreferrer" aria-label="Código no GitHub" onClick={e => e.stopPropagation()}>
-                      <IconGithub size={15} /> GitHub
-                    </a>
-                  )}
-                  {project.link && (
-                    <a href={project.link} className="projects__card-link projects__card-link--more" target="_blank" rel="noopener noreferrer" aria-label="Veja mais detalhes do projeto" onClick={e => e.stopPropagation()}>
-                      Veja Mais <IconExternalLink size={15} />
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
+        {/* Anchor for pagination scrolling */}
+        <div id="projects-grid-start" style={{ scrollMarginTop: '100px' }} />
 
-          {/* Coming soon */}
-          <div className="projects__card projects__card--coming-soon glass-card reveal-up" data-stagger
-               role="article" aria-label="Novos projetos em breve">
-            <div className="projects__coming-soon-content">
-              <IconRocket size={44} className="projects__coming-icon" />
-              <h3 className="projects__card-title">Mais por vir...</h3>
-              <p className="projects__card-desc">
-                Novos projetos estão sendo planejados. Acompanhe no Instagram
-                para ficar por dentro de todas as novidades!
-              </p>
-              <a href="https://instagram.com/vulkaris_robotics" className="btn btn-outline"
-                 target="_blank" rel="noopener noreferrer" id="projects-instagram-btn"
-                 style={{ marginTop: '14px', fontSize: '0.88rem', padding: '9px 22px' }}
-                 aria-label="Acompanhar Vulkaris no Instagram">
-                <IconInstagram size={16} />
-                @vulkaris_robotics
-              </a>
-            </div>
-          </div>
+        {/* Grid */}
+        <div className="projects__grid reveal-up" ref={gridRef}>
+          {currentItems.map((item) => {
+            if (item.isComingSoon) {
+              return (
+                <div key="coming-soon" className="projects__card projects__card--coming-soon glass-card"
+                     role="article" aria-label="Novos projetos em breve">
+                  <div className="projects__coming-soon-content">
+                    <IconRocket size={44} className="projects__coming-icon" />
+                    <h3 className="projects__card-title">Mais por vir...</h3>
+                    <p className="projects__card-desc">
+                      Novos projetos estão sendo planejados. Acompanhe no Instagram
+                      para ficar por dentro de todas as novidades!
+                    </p>
+                    <a href="https://instagram.com/vulkaris_robotics" className="btn btn-outline"
+                       target="_blank" rel="noopener noreferrer" id="projects-instagram-btn"
+                       style={{ marginTop: '14px', fontSize: '0.88rem', padding: '9px 22px' }}
+                       aria-label="Acompanhar Vulkaris no Instagram">
+                      <IconInstagram size={16} />
+                      @vulkaris_robotics
+                    </a>
+                  </div>
+                </div>
+              );
+            }
+
+            const project = item;
+            return (
+              <div key={project.id} className="projects__card glass-card" id={`project-${project.id}`}
+                   role="article" onClick={() => setActiveProject(project)} style={{ cursor: 'pointer' }}>
+                <div className="projects__card-header">
+                  <span className="projects__card-date">{project.date}</span>
+                  <span className="projects__status-badge projects__status-badge--small"
+                        style={{ '--status-color': project.statusColor }}>
+                    <span className="projects__status-dot" aria-hidden="true" />
+                    {project.status}
+                  </span>
+                </div>
+                {project.image && (
+                  <div className="projects__card-image">
+                    <img src={project.image} alt={project.title} loading="lazy" />
+                    <div className="projects__card-image-overlay" aria-hidden="true" />
+                  </div>
+                )}
+                <h3 className="projects__card-title">{project.title}</h3>
+                <p className="projects__card-desc">{project.description}</p>
+                <div className="projects__tags">
+                  {project.tags.map(tag => <span key={tag} className="areas__tag">{tag}</span>)}
+                </div>
+                {(project.github || project.link) && (
+                  <div className="projects__card-links">
+                    {project.github && (
+                      <a href={project.github} className="projects__card-link projects__card-link--github" target="_blank" rel="noopener noreferrer" aria-label="Código no GitHub" onClick={e => e.stopPropagation()}>
+                        <IconGithub size={15} /> GitHub
+                      </a>
+                    )}
+                    {project.link && (
+                      <a href={project.link} className="projects__card-link projects__card-link--more" target="_blank" rel="noopener noreferrer" aria-label="Veja mais detalhes do projeto" onClick={e => e.stopPropagation()}>
+                        Veja Mais <IconExternalLink size={15} />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
+
+        {/* Paginação */}
+        {totalPages > 1 && (
+          <div className="projects__pagination" role="navigation" aria-label="Paginação dos projetos">
+            <button
+              className="projects__page-btn"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              aria-label="Página anterior"
+            >
+              <IconChevronLeft size={16} />
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                className={`projects__page-btn ${currentPage === page ? 'projects__page-btn--active' : ''}`}
+                onClick={() => handlePageChange(page)}
+                aria-label={`Ir para a página ${page}`}
+                aria-current={currentPage === page ? 'page' : undefined}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              className="projects__page-btn"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              aria-label="Próxima página"
+            >
+              <IconChevronRight size={16} />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Modal de Detalhes do Projeto */}
@@ -204,7 +278,10 @@ export default function Projects() {
             )}
             <div className="projects__modal-content">
               <div className="projects__modal-header">
-                <h3 className="projects__modal-title">{activeProject.title}</h3>
+                <div className="projects__modal-title-group">
+                  <h3 className="projects__modal-title">{activeProject.title}</h3>
+                  <span className="projects__modal-date">{activeProject.date}</span>
+                </div>
                 <span className="projects__status-badge" style={{ '--status-color': activeProject.statusColor }}>
                   <span className="projects__status-dot" aria-hidden="true" />
                   {activeProject.status}

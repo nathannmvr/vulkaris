@@ -9,12 +9,12 @@
 }
 
 .navbar--scrolled {
-  background: rgba(15, 17, 23, 0.93);
+  background: var(--color-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(79, 195, 247, 0.15);
+  border-bottom: 1px solid var(--color-border);
   padding: 12px 0;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+  box-shadow: var(--shadow-card);
 }
 
 .navbar__container {
@@ -172,7 +172,7 @@
     height: 100vh;
     width: 290px;
     background: var(--color-bg-secondary);
-    border-left: 1px solid rgba(79, 195, 247, 0.15);
+    border-left: 1px solid var(--color-border);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;

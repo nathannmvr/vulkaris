@@ -11,6 +11,7 @@ export const members = [
     initials: 'A',
     instagram: '@wiik1223',
     image: '/membros/antonio.jpeg',
+    position: 'center 20%',
   },
   {
     id: 'beatriz',
@@ -21,6 +22,8 @@ export const members = [
     color: '#81D4FA',
     initials: 'B',
     instagram: '@beatrizt.sv',
+    image: '/membros/beatriz.jpeg',
+    position: 'center 20%',
   },
   {
     id: 'bianca',
@@ -32,6 +35,7 @@ export const members = [
     initials: 'B',
     instagram: '@eu.biancamuniz',
     image: '/membros/Bianca.png',
+    position: 'center 25%',
   },
   {
     id: 'fernanda',
@@ -54,6 +58,7 @@ export const members = [
     initials: 'I',
     instagram: '@ingrids.nns',
     image: '/membros/ingrid.jpg',
+    position: 'center 15%',
   },
   {
     id: 'nathan',
@@ -70,7 +75,7 @@ export const members = [
     id: 'pedro',
     name: 'Pedro Victor',
     role: 'Líder',
-    description: 'Apoio geral, organização, integração da equipe e suporte técnico.',
+    description: 'Apoio geral, organization, integração da equipe e suporte técnico.',
     icon: <IconGear size={30} />,
     color: '#FF8C4A',
     initials: 'P',
@@ -87,5 +92,6 @@ export const members = [
     initials: 'V',
     instagram: '@vii.ctorx',
     image: '/membros/Victor.jpeg',
+    position: 'center 20%',
   },
 ];

@@ -54,6 +54,7 @@ export default function Team() {
                       src={member.image}
                       alt={`Foto de ${member.name}`}
                       className="team__avatar-img"
+                      style={member.position ? { objectPosition: member.position } : {}}
                     />
                   ) : (
                     <span className="team__avatar-icon">{member.icon}</span>
@@ -99,11 +100,12 @@ export default function Team() {
         <div className="team__cta reveal-scale" aria-label="Convite para contato" ref={ctaRef}>
           <p className="team__cta-text">Tem interesse em fazer parte da Vulkaris?</p>
           <a
-            href="#contato"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScYgU3F8kC_TO7ZsyXKA0IxSfJY-JwXd38ADZkRNLuUbHvGNQ/viewform?usp=sharing&ouid=110021712325885217404"
             className="btn btn-primary"
-            onClick={e => { e.preventDefault(); document.querySelector('#contato')?.scrollIntoView({ behavior: 'smooth' }); }}
+            target="_blank"
+            rel="noopener noreferrer"
             id="team-contact-btn"
-            aria-label="Entre em contato para saber mais"
+            aria-label="Preencher formulário para fazer parte da Vulkaris"
           >
             Entre em Contato
           </a>
@@ -136,6 +138,7 @@ export default function Team() {
                       src={activeMember.image}
                       alt={`Foto de ${activeMember.name}`}
                       className="team__modal-avatar-img"
+                      style={activeMember.position ? { objectPosition: activeMember.position } : {}}
                     />
                   ) : (
                     <span className="team__modal-avatar-icon">{activeMember.icon}</span>
