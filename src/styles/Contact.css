@@ -228,13 +228,13 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .contact .container {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .contact__container {
-    padding: 30px 16px;
+    padding: 28px 16px;
     border-radius: var(--radius-lg);
   }
   
@@ -243,27 +243,27 @@
   }
   
   .contact__channel-card {
-    padding: 16px 14px;
+    padding: 16px 12px;
     gap: 12px;
   }
 
   .contact__channel-value {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
   }
-}
 
-@media (max-width: 400px) {
-  .contact__channel-card {
-    padding: 14px 10px;
-    gap: 8px;
-  }
-  
-  .contact__channel-value {
-    font-size: 0.76rem;
-  }
-  
   .contact__channel-action {
     width: 36px;
     height: 36px;
+  }
+}
+
+@media (max-width: 360px) {
+  .contact__channel-card {
+    padding: 14px 10px;
+    gap: 10px;
+  }
+  
+  .contact__channel-value {
+    font-size: 0.74rem;
   }
 }
