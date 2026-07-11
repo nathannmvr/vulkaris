@@ -32,8 +32,8 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
   align-items: center;
 }
 
@@ -118,8 +118,8 @@
 .contact__channel-card {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 20px 24px;
+  gap: 14px;
+  padding: 18px 20px;
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   position: relative;
