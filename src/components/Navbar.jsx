@@ -96,19 +96,6 @@ export default function Navbar() {
               {theme === 'dark' ? <IconSun size={18} /> : <IconMoon size={18} />}
             </button>
           </li>
-          <li role="listitem">
-            <a
-              href="https://instagram.com/vulkaris_robotics"
-              className="btn btn-accent navbar__cta"
-              target="_blank"
-              rel="noopener noreferrer"
-              id="navbar-instagram-btn"
-              aria-label="Seguir no Instagram"
-            >
-              <IconInstagram size={17} />
-              Instagram
-            </a>
-          </li>
         </ul>
 
         {/* Hamburger */}

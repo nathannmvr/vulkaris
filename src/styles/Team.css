@@ -193,23 +193,58 @@
 
 /* CTA */
 .team__cta {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  padding: 44px;
+  gap: 20px;
+  padding: 50px 40px;
   border-radius: var(--radius-xl);
   background: linear-gradient(135deg,
-    rgba(79, 195, 247, 0.07) 0%,
-    rgba(255, 107, 26, 0.04) 100%);
-  border: 1px solid rgba(79, 195, 247, 0.18);
+    rgba(26, 32, 48, 0.8) 0%,
+    rgba(15, 17, 23, 0.9) 100%);
+  border: 1px solid rgba(79, 195, 247, 0.2);
   text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 195, 247, 0.05);
+  transition: all var(--transition-slow);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 40px auto 0;
+}
+
+.team__cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 107, 26, 0.12), transparent 60%);
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.team__cta:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 107, 26, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 107, 26, 0.15);
 }
 
 .team__cta-text {
-  font-size: 1.15rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #ffffff 30%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.team__cta-subtext {
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
-  font-weight: 500;
+  max-width: 580px;
+  line-height: 1.6;
+  margin-bottom: 8px;
 }
 
 @keyframes spin-ring {
@@ -227,7 +262,12 @@
   .team__card {
     flex: 0 1 100%;
   }
-  .team__cta  { padding: 28px 20px; }
+  .team__cta {
+    padding: 35px 24px;
+  }
+  .team__cta-text {
+    font-size: 1.3rem;
+  }
 }
 
 /* Modal de Detalhes do Membro */

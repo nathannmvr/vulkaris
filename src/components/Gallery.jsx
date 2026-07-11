@@ -16,7 +16,7 @@ const getTodayDateWithTime = (hour, minute) => {
 const galleryItems = [
   {
     id: 'robot-soccer-1',
-    src: '/projetos/robot_soccer.png',
+    src: '/projetos/futebol/robot_soccer.png',
     alt: 'Robô futebolista da Vulkaris em ação durante competição',
     label: 'Futebol de Robôs',
     span: 'wide',
@@ -34,7 +34,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-2',
-    src: '/projetos/robot_soccer.png',
+    src: '/projetos/futebol/robot_soccer.png',
     alt: 'Protótipo de robô desenvolvido pela equipe Vulkaris',
     label: 'Prototipagem',
     span: 'normal',
@@ -52,7 +52,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-3',
-    src: '/projetos/robot_soccer.png',
+    src: '/projetos/futebol/robot_soccer.png',
     alt: 'Competição de robótica com participação da Vulkaris',
     label: 'Competição',
     span: 'normal',
@@ -70,7 +70,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-4',
-    src: '/projetos/robot_soccer.png',
+    src: '/projetos/futebol/robot_soccer.png',
     alt: 'Robô calibrando sensores ópticos',
     label: 'Calibração',
     span: 'normal',
@@ -88,7 +88,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-5',
-    src: '/projetos/robot_soccer.png',
+    src: '/projetos/futebol/robot_soccer.png',
     alt: 'Testes de velocidade no campo',
     label: 'Testes',
     span: 'normal',
@@ -106,7 +106,7 @@ const galleryItems = [
   },
   {
     id: 'robot-soccer-6',
-    src: '/projetos/robot_soccer.png',
+    src: '/projetos/futebol/robot_soccer.png',
     alt: 'Robô em pose de vitória',
     label: 'Vitória',
     span: 'tall',
@@ -238,19 +238,6 @@ export default function Gallery() {
             </button>
           </div>
         )}
-
-        <div className="gallery__instagram-cta reveal-up" ref={ctaRef}>
-          <p className="gallery__cta-text">
-            <IconCamera size={18} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
-            Mais fotos e vídeos no nosso Instagram
-          </p>
-          <a href="https://instagram.com/vulkaris_robotics" className="btn btn-primary"
-             target="_blank" rel="noopener noreferrer" id="gallery-instagram-btn"
-             aria-label="Ver mais fotos no Instagram @vulkaris_robotics">
-            <IconInstagram size={18} />
-            @vulkaris_robotics
-          </a>
-        </div>
       </div>
 
       {/* Lightbox Modal de Expansão */}

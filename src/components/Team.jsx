@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../styles/Team.css';
-import { IconInstagram, IconCopy, IconCheck } from './Icons';
+import { IconInstagram, IconCopy, IconCheck, IconUsers } from './Icons';
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 import { members } from './members';
 
@@ -98,7 +98,10 @@ export default function Team() {
         </div>
 
         <div className="team__cta reveal-scale" aria-label="Convite para contato" ref={ctaRef}>
-          <p className="team__cta-text">Tem interesse em fazer parte da Vulkaris?</p>
+          <h3 className="team__cta-text">Tem interesse em fazer parte da Vulkaris?</h3>
+          <p className="team__cta-subtext">
+            Venha desenvolver robôs, aprender novas tecnologias e fazer parte de uma equipe apaixonada por inovação.
+          </p>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLScYgU3F8kC_TO7ZsyXKA0IxSfJY-JwXd38ADZkRNLuUbHvGNQ/viewform?usp=sharing&ouid=110021712325885217404"
             className="btn btn-primary"
@@ -107,7 +110,7 @@ export default function Team() {
             id="team-contact-btn"
             aria-label="Preencher formulário para fazer parte da Vulkaris"
           >
-            Entre em Contato
+            <IconUsers size={18} /> Clique Aqui
           </a>
         </div>
       </div>

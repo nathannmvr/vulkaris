@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../styles/Projects.css';
-import { IconStar, IconRocket, IconInstagram, IconGithub, IconExternalLink, IconChevronLeft, IconChevronRight } from './Icons';
+import { IconStar, IconGithub, IconExternalLink, IconChevronLeft, IconChevronRight } from './Icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const getTodayDateWithTime = (hour, minute) => {
@@ -19,8 +19,8 @@ const projects = [
     title: 'Futebol de Robôs',
     description: 'Desenvolvimento de robôs autônomos para competições de futebol robótico. O projeto envolve programação de IA, eletrônica avançada, modelagem e montagem completa dos robôs jogadores.',
     status: 'Em Desenvolvimento',
-    statusColor: '#4FC3F7',
-    image: '/projetos/robot_soccer.png',
+    statusColor: '#FF8C4A',
+    image: '/projetos/futebol/robot_soccer.png',
     tags: ['Autonomia', 'IA', 'Eletrônica', 'Competição'],
     featured: false,
     github: null,
@@ -33,18 +33,44 @@ const projects = [
     description: 'Plataforma de gerenciamento de robôs de combate, permitindo o cadastro de robôs, equipes, eventos e resultados das competições.',
     status: 'Ativo',
     statusColor: '#4FC3F7',
-    image: '/projetos/roboClash.png',
+    image: '/projetos/roboClash/roboClash.png',
     tags: ['Desenvolvimento', 'Web', 'Gestão', 'Competições'],
     featured: false,
     github: null,
-    link: 'https://roboclash.vercel.app',
+    link: 'https://roboClash.vercel.app',
     date: getTodayDateWithTime(16, 45),
+  },
+  {
+    id: 'CNC',
+    title: 'CNC PCB',
+    description: 'Uma máquina CNC impressa em 3D para fabricação de PCBs caseiras',
+    status: 'Em Desenvolvimento',
+    statusColor: '#FF8C4A',
+    image: '/projetos/CNC/cnc.png',
+    tags: ['CNC', 'PCB', 'GRBL'],
+    featured: false,
+    github: 'https://github.com/pedro4896/CNC_PCB',
+    link: null,
+    date: getTodayDateWithTime(20, 30),
+  },
+  {
+    id: 'Extrusora',
+    title: 'Extrusora Garrafa PET',
+    description: 'Uma maquina capaz de transformar garrafas Pets em filamentos para impressoras 3D',
+    status: 'Em Desenvolvimento',
+    statusColor: '#FF8C4A',
+    image: '/projetos/extrusora/extrusora.jpg',
+    tags: ['3D', 'Reciclagem', 'Criatividade'],
+    featured: false,
+    github: null,
+    link: null,
+    date: getTodayDateWithTime(20, 45),
   },
   {
     id: 'automacao-geral',
     title: 'Projetos de Automação',
     description: 'Sistemas automatizados que integram sensores, atuadores e microcontroladores para resolver problemas práticos do dia a dia.',
-    status: 'Planejado',
+    status: 'Em Desenvolvimento',
     statusColor: '#FF8C4A',
     image: null,
     tags: ['Sensores', 'Arduino', 'Automação'],
@@ -70,9 +96,9 @@ const projects = [
     id: 'inmoov',
     title: 'Braço Robótico InMoov',
     description: 'Desenvolvimento e montagem de um braço robótico de tamanho real de código aberto. Envolve impressão 3D de todas as partes, controle de servomotores, reconhecimento de voz e visão computacional.',
-    status: 'Em Desenvolvimento',
+    status: 'Ativo',
     statusColor: '#4FC3F7',
-    image: '/projetos/inmoov.png',
+    image: '/projetos/inmoov/inmoov.png',
     tags: ['Braço Robótico', 'Impressão 3D', 'Visão Computacional', 'C++', 'Python', "OpenCV"],
     featured: true,
     github: null,
@@ -91,7 +117,7 @@ export default function Projects() {
   const itemsPerPage = 3;
 
   const regularProjects = projects.filter(p => !p.featured);
-  const gridItems = [...regularProjects, { id: 'coming-soon', isComingSoon: true }];
+  const gridItems = [...regularProjects];
 
   const totalPages = Math.ceil(gridItems.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -164,31 +190,7 @@ export default function Projects() {
 
         {/* Grid */}
         <div className="projects__grid reveal-up" ref={gridRef}>
-          {currentItems.map((item) => {
-            if (item.isComingSoon) {
-              return (
-                <div key="coming-soon" className="projects__card projects__card--coming-soon glass-card"
-                     role="article" aria-label="Novos projetos em breve">
-                  <div className="projects__coming-soon-content">
-                    <IconRocket size={44} className="projects__coming-icon" />
-                    <h3 className="projects__card-title">Mais por vir...</h3>
-                    <p className="projects__card-desc">
-                      Novos projetos estão sendo planejados. Acompanhe no Instagram
-                      para ficar por dentro de todas as novidades!
-                    </p>
-                    <a href="https://instagram.com/vulkaris_robotics" className="btn btn-outline"
-                       target="_blank" rel="noopener noreferrer" id="projects-instagram-btn"
-                       style={{ marginTop: '14px', fontSize: '0.88rem', padding: '9px 22px' }}
-                       aria-label="Acompanhar Vulkaris no Instagram">
-                      <IconInstagram size={16} />
-                      @vulkaris_robotics
-                    </a>
-                  </div>
-                </div>
-              );
-            }
-
-            const project = item;
+          {currentItems.map((project) => {
             return (
               <div key={project.id} className="projects__card glass-card" id={`project-${project.id}`}
                    role="article" onClick={() => setActiveProject(project)} style={{ cursor: 'pointer' }}>

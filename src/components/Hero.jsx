@@ -63,12 +63,6 @@ export default function Hero() {
               <IconInstagram size={17} />
               Acompanhe no Instagram
             </a>
-            <a href="#contato" className="btn btn-accent hero__btn"
-               onClick={e => scrollTo(e, '#contato')} id="hero-contact-btn"
-               aria-label="Entre em contato">
-              <IconPhone size={17} />
-              Entre em Contato
-            </a>
           </div>
 
           <div className="hero__stats reveal-up" aria-label="Estatísticas da equipe" data-stagger>
