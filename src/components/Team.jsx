@@ -46,6 +46,7 @@ export default function Team() {
               onClick={() => setActiveMember(member)}
             >
               <div className="team__card-glow" aria-hidden="true" />
+              <div className="team__card-banner" aria-hidden="true" />
 
               <div className="team__avatar-wrapper">
                 <div className="team__avatar" aria-hidden="true">
@@ -64,35 +65,38 @@ export default function Team() {
               </div>
 
               <div className="team__info">
+                <span className="team__role-badge">
+                  <span className="team__role-icon" aria-hidden="true">{member.icon}</span>
+                  {member.role}
+                </span>
                 <h3 className="team__name">{member.name}</h3>
-                <span className="team__role">{member.role}</span>
                 <p className="team__desc">{member.description}</p>
                 {member.instagram && (
                   <div className="team__instagram-wrapper">
                     <a
                       href={`https://instagram.com/${member.instagram.replace('@', '')}`}
-                      className="team__instagram"
+                      className="team__instagram-pill"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Instagram de ${member.name}`}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <IconInstagram size={15} />
+                      <IconInstagram size={14} />
                       <span>{member.instagram}</span>
                     </a>
                     <button
-                      className="team__copy-btn"
+                      className="team__copy-pill-btn"
                       onClick={(e) => handleCopy(e, member.instagram, member.id)}
                       aria-label={`Copiar Instagram de ${member.name}`}
                       title="Copiar usuário"
                     >
-                      {copiedId === member.id ? <IconCheck size={13} /> : <IconCopy size={13} />}
+                      {copiedId === member.id ? <IconCheck size={12} /> : <IconCopy size={12} />}
                     </button>
                   </div>
                 )}
               </div>
 
-              <div className="team__card-line" aria-hidden="true" />
+              <div className="team__card-accent-line" aria-hidden="true" />
             </div>
           ))}
         </div>
@@ -132,6 +136,7 @@ export default function Team() {
             </button>
 
             <div className="team__modal-glow" aria-hidden="true" />
+            <div className="team__modal-banner" aria-hidden="true" />
 
             <div className="team__modal-content">
               <div className="team__modal-avatar-wrapper">
@@ -150,8 +155,11 @@ export default function Team() {
                 <div className="team__modal-avatar-ring" aria-hidden="true" />
               </div>
 
+              <span className="team__role-badge">
+                <span className="team__role-icon" aria-hidden="true">{activeMember.icon}</span>
+                {activeMember.role}
+              </span>
               <h3 className="team__modal-name">{activeMember.name}</h3>
-              <span className="team__modal-role">{activeMember.role}</span>
               <div className="team__modal-divider" />
               <p className="team__modal-desc">{activeMember.description}</p>
 
@@ -161,22 +169,22 @@ export default function Team() {
                   <div className="team__instagram-wrapper">
                     <a
                       href={`https://instagram.com/${activeMember.instagram.replace('@', '')}`}
-                      className="team__instagram"
+                      className="team__instagram-pill"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Instagram de ${activeMember.name}`}
                       onClick={e => e.stopPropagation()}
                     >
-                      <IconInstagram size={15} />
+                      <IconInstagram size={14} />
                       <span>{activeMember.instagram}</span>
                     </a>
                     <button
-                      className="team__copy-btn"
+                      className="team__copy-pill-btn"
                       onClick={(e) => handleCopy(e, activeMember.instagram, activeMember.id)}
                       aria-label={`Copiar Instagram de ${activeMember.name}`}
                       title="Copiar usuário"
                     >
-                      {copiedId === activeMember.id ? <IconCheck size={13} /> : <IconCopy size={13} />}
+                      {copiedId === activeMember.id ? <IconCheck size={12} /> : <IconCopy size={12} />}
                     </button>
                   </div>
                 </div>

@@ -148,40 +148,42 @@ export default function Projects() {
           {projects.filter(p => p.featured).map(project => (
             <div key={project.id} className="projects__featured glass-card reveal-up" ref={featuredRef} id={`project-${project.id}`}
                  role="article" aria-label={`Projeto em destaque: ${project.title}`}
-                 onClick={() => setActiveProject(project)} style={{ cursor: 'pointer' }}>
-            <div className="projects__featured-image">
-              <img src={project.image} alt={`Robô jogando futebol — ${project.title}`} loading="lazy" />
-              <div className="projects__featured-image-overlay" aria-hidden="true" />
-              <div className="projects__status-badge" style={{ '--status-color': project.statusColor }}>
-                <span className="projects__status-dot" aria-hidden="true" />
-                {project.status}
-              </div>
-            </div>
-            <div className="projects__featured-content">
-              <div className="projects__featured-label">
-                <IconStar size={14} /> Destaque &bull; {project.date}
-              </div>
-              <h3 className="projects__featured-title">{project.title}</h3>
-              <p className="projects__featured-desc">{project.description}</p>
-              <div className="projects__tags">
-                {project.tags.map(tag => <span key={tag} className="areas__tag">{tag}</span>)}
-              </div>
-              {(project.github || project.link) && (
-                <div className="projects__links">
-                  {project.github && (
-                    <a href={project.github} className="btn btn-outline projects__link-btn" target="_blank" rel="noopener noreferrer" aria-label="Código no GitHub" onClick={e => e.stopPropagation()}>
-                      <IconGithub size={16} /> GitHub
-                    </a>
-                  )}
-                  {project.link && (
-                    <a href={project.link} className="btn btn-primary projects__link-btn" target="_blank" rel="noopener noreferrer" aria-label="Veja mais detalhes do projeto" onClick={e => e.stopPropagation()}>
-                      Veja Mais <IconExternalLink size={16} />
-                    </a>
-                  )}
+                 onClick={() => setActiveProject(project)} style={{ cursor: 'pointer', '--project-color': project.statusColor }}>
+              <div className="projects__featured-glow" aria-hidden="true" />
+              <div className="projects__featured-image">
+                <img src={project.image} alt={`Robô jogando futebol — ${project.title}`} loading="lazy" />
+                <div className="projects__featured-image-overlay" aria-hidden="true" />
+                <div className="projects__status-badge" style={{ '--status-color': project.statusColor }}>
+                  <span className="projects__status-dot" aria-hidden="true" />
+                  {project.status}
                 </div>
-              )}
+              </div>
+              <div className="projects__featured-content">
+                <div className="projects__featured-label">
+                  <IconStar size={14} /> Destaque &bull; {project.date}
+                </div>
+                <h3 className="projects__featured-title">{project.title}</h3>
+                <p className="projects__featured-desc">{project.description}</p>
+                <div className="projects__tags">
+                  {project.tags.map(tag => <span key={tag} className="areas__tag">{tag}</span>)}
+                </div>
+                {(project.github || project.link) && (
+                  <div className="projects__links">
+                    {project.github && (
+                      <a href={project.github} className="btn btn-outline projects__link-btn" target="_blank" rel="noopener noreferrer" aria-label="Código no GitHub" onClick={e => e.stopPropagation()}>
+                        <IconGithub size={16} /> GitHub
+                      </a>
+                    )}
+                    {project.link && (
+                      <a href={project.link} className="btn btn-primary projects__link-btn" target="_blank" rel="noopener noreferrer" aria-label="Veja mais detalhes do projeto" onClick={e => e.stopPropagation()}>
+                        Veja Mais <IconExternalLink size={16} />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="projects__featured-accent-line" aria-hidden="true" />
             </div>
-          </div>
           ))}
         </div>
 
@@ -193,7 +195,8 @@ export default function Projects() {
           {currentItems.map((project) => {
             return (
               <div key={project.id} className="projects__card glass-card" id={`project-${project.id}`}
-                   role="article" onClick={() => setActiveProject(project)} style={{ cursor: 'pointer' }}>
+                   role="article" onClick={() => setActiveProject(project)} style={{ cursor: 'pointer', '--project-color': project.statusColor }}>
+                <div className="projects__card-glow" aria-hidden="true" />
                 <div className="projects__card-header">
                   <span className="projects__card-date">{project.date}</span>
                   <span className="projects__status-badge projects__status-badge--small"
@@ -202,11 +205,13 @@ export default function Projects() {
                     {project.status}
                   </span>
                 </div>
-                {project.image && (
+                {project.image ? (
                   <div className="projects__card-image">
                     <img src={project.image} alt={project.title} loading="lazy" />
                     <div className="projects__card-image-overlay" aria-hidden="true" />
                   </div>
+                ) : (
+                  <div className="projects__card-banner" aria-hidden="true" />
                 )}
                 <h3 className="projects__card-title">{project.title}</h3>
                 <p className="projects__card-desc">{project.description}</p>
@@ -227,6 +232,7 @@ export default function Projects() {
                     )}
                   </div>
                 )}
+                <div className="projects__card-accent-line" aria-hidden="true" />
               </div>
             );
           })}
@@ -269,14 +275,17 @@ export default function Projects() {
       {/* Modal de Detalhes do Projeto */}
       {activeProject && (
         <div className="projects__modal-overlay" onClick={() => setActiveProject(null)}>
-          <div className="projects__modal glass-card" onClick={e => e.stopPropagation()}>
+          <div className="projects__modal glass-card" onClick={e => e.stopPropagation()} style={{ '--project-color': activeProject.statusColor }}>
             <button className="projects__modal-close" onClick={() => setActiveProject(null)} aria-label="Fechar modal">
               &times;
             </button>
-            {activeProject.image && (
+            <div className="projects__modal-glow" aria-hidden="true" />
+            {activeProject.image ? (
               <div className="projects__modal-image">
                 <img src={activeProject.image} alt={activeProject.title} />
               </div>
+            ) : (
+              <div className="projects__modal-banner" aria-hidden="true" />
             )}
             <div className="projects__modal-content">
               <div className="projects__modal-header">
