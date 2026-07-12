@@ -75,7 +75,7 @@ export const members = [
     id: 'pedro',
     name: 'Pedro Victor',
     role: 'Líder',
-    description: 'Apoio geral, organization, integração da equipe e suporte técnico.',
+    description: 'Apoio geral, organização, integração da equipe e suporte técnico.',
     icon: <IconGear size={30} />,
     color: '#FF8C4A',
     initials: 'P',
