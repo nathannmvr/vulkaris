@@ -3,7 +3,7 @@ import { IconCode, IconZap, IconBox, IconGear, IconBrush } from './Icons';
 export const members = [
   {
     id: 'antonio',
-    name: 'Antônio Pedro',
+    name: 'Antonio Pedro',
     role: 'Projetista',
     description: 'Modelagem 3D, estrutura mecânica e design dos robôs.',
     icon: <IconBox size={30} />,
