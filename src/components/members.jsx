@@ -4,7 +4,7 @@ export const members = [
   {
     id: 'antonio',
     name: 'Antônio Pedro',
-    role: 'Modelagem 3D',
+    role: 'Projetista',
     description: 'Modelagem 3D, estrutura mecânica e design dos robôs.',
     icon: <IconBox size={30} />,
     color: '#FF8C4A',
@@ -40,7 +40,7 @@ export const members = [
   {
     id: 'fernanda',
     name: 'Fernanda Santos',
-    role: 'Modelagem 3D',
+    role: 'Projetista',
     description: 'Modelagem 3D, estrutura mecânica e design dos robôs.',
     icon: <IconBox size={30} />,
     color: '#81D4FA',
