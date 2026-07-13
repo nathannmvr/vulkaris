@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/Gallery.css';
-import { IconInstagram, IconCamera, IconChevronLeft, IconChevronRight } from './Icons';
+import { IconInstagram, IconCamera, IconChevronLeft, IconChevronRight, IconPlay } from './Icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 const getTodayDateWithTime = (hour, minute) => {
@@ -17,23 +17,25 @@ const getTodayDateWithTime = (hour, minute) => {
 const galleryItems = [
   {
     id: 'novos_membros',
+    type: 'image',
     src: '/galeria/novosMembros.png',
     alt: 'Divulgação dos novos membros da Equipe Vulkaris',
     label: 'Novos Membros',
-    span: 'normal',
+    span: 'wide',
     date: getTodayDateWithTime(13, 29),
-    desc: 'Divulgação dos novos membros da Equipe Vulkaris',
+    desc: 'Divulgação dos novos membros da Equipe Vulkaris.',
     instagramLink: 'https://www.instagram.com/p/DavNBz5Fu0f/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
   },
   {
-    id: 'team-working-1',
-    src: '/team_working.png',
-    alt: 'Equipe Vulkaris trabalhando em projeto de robótica no laboratório',
-    label: 'Bastidores',
+    id: 'divulgacao_equipe',
+    type: 'video',
+    src: '/galeria/divulgacaoEquipe.mp4',
+    alt: 'Vídeo de divulgação da Equipe Vulkaris',
+    label: 'Vídeo Divulgação',
     span: 'normal',
-    date: getTodayDateWithTime(16, 0),
-    desc: 'Alinhamento mecânico do chassi e testes de calibração eletrônica feitos em conjunto pela equipe no laboratório.',
-    instagramLink: null,
+    date: '15/06/2026 às 10:00',
+    desc: 'Vídeo de divulgação da Equipe Vulkaris.',
+    instagramLink: 'https://www.instagram.com/reel/DZm5_00SIzQ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
   },
 ];
 
@@ -106,11 +108,22 @@ export default function Gallery() {
         {/* Anchor for pagination scrolling */}
         <div id="gallery-grid-start" style={{ scrollMarginTop: '100px' }} />
 
-        <div className="gallery__grid reveal-up" role="list" aria-label="Galeria de imagens da Vulkaris Robotics Team" ref={gridRef}>
+        <div className="gallery__grid reveal-up" role="list" aria-label="Galeria de imagens e vídeos da Vulkaris Robotics Team" ref={gridRef}>
           {currentItems.map(item => (
-            <div key={item.id} className={`gallery__item gallery__item--${item.span}`}
+            <div key={item.id} className={`gallery__item gallery__item--${item.span} ${item.type === 'video' ? 'gallery__item--video' : ''}`}
                  role="listitem" id={`gallery-${item.id}`} onClick={() => setActiveItem(item)}>
-              <img src={item.src} alt={item.alt} className="gallery__image" loading="lazy" />
+              {item.type === 'video' ? (
+                <video src={item.src} className="gallery__media" muted loop playsInline autoPlay />
+              ) : (
+                <img src={item.src} alt={item.alt} className="gallery__media" loading="lazy" />
+              )}
+
+              {item.type === 'video' && (
+                <div className="gallery__video-indicator" aria-hidden="true">
+                  <IconPlay size={18} />
+                </div>
+              )}
+
               <div className="gallery__overlay" aria-hidden="true">
                 {item.instagramLink && (
                   <a
@@ -178,7 +191,11 @@ export default function Gallery() {
             </button>
 
             <div className="gallery__modal-image-wrapper">
-              <img src={activeItem.src} alt={activeItem.alt} className="gallery__modal-image" />
+              {activeItem.type === 'video' ? (
+                <video src={activeItem.src} className="gallery__modal-video" controls autoPlay playsInline />
+              ) : (
+                <img src={activeItem.src} alt={activeItem.alt} className="gallery__modal-image" />
+              )}
             </div>
 
             <div className="gallery__modal-info">
