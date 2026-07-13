@@ -13,114 +13,27 @@ const getTodayDateWithTime = (hour, minute) => {
   return `${dd}/${mm}/${yyyy} às ${hh}:${min}`;
 };
 
+// Span: 1 = normal, 2 = tall (dobro da altura), 4 = wide (dobro da largura)
 const galleryItems = [
   {
-    id: 'robot-soccer-1',
-    src: '/projetos/futebol/robot_soccer.png',
-    alt: 'Robô futebolista da Vulkaris em ação durante competição',
-    label: 'Futebol de Robôs',
-    span: 'wide',
-    date: getTodayDateWithTime(14, 30),
-    desc: 'Protótipo de robô da categoria VSS em campo de testes durante os preparativos para o campeonato regional.',
+    id: 'novos_membros',
+    src: '/galeria/novosMembros.png',
+    alt: 'Divulgação dos novos membros da Equipe Vulkaris',
+    label: 'Novos Membros',
+    span: 'normal',
+    date: getTodayDateWithTime(13, 29),
+    desc: 'Divulgação dos novos membros da Equipe Vulkaris',
+    instagramLink: 'https://www.instagram.com/p/DavNBz5Fu0f/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
   },
   {
     id: 'team-working-1',
     src: '/team_working.png',
     alt: 'Equipe Vulkaris trabalhando em projeto de robótica no laboratório',
     label: 'Bastidores',
-    span: 'tall',
+    span: 'normal',
     date: getTodayDateWithTime(16, 0),
     desc: 'Alinhamento mecânico do chassi e testes de calibração eletrônica feitos em conjunto pela equipe no laboratório.',
-  },
-  {
-    id: 'robot-soccer-2',
-    src: '/projetos/futebol/robot_soccer.png',
-    alt: 'Protótipo de robô desenvolvido pela equipe Vulkaris',
-    label: 'Prototipagem',
-    span: 'normal',
-    date: getTodayDateWithTime(10, 0),
-    desc: 'Visão aproximada das placas eletrônicas e da fixação dos motores no chassi impresso em 3D.',
-  },
-  {
-    id: 'team-working-2',
-    src: '/team_working.png',
-    alt: 'Teste de sistemas eletrônicos pela equipe Vulkaris',
-    label: 'Eletrônica',
-    span: 'normal',
-    date: getTodayDateWithTime(15, 30),
-    desc: 'Soldagem e isolamento dos fios de alimentação dos servomotores antes do teste de estresse.',
-  },
-  {
-    id: 'robot-soccer-3',
-    src: '/projetos/futebol/robot_soccer.png',
-    alt: 'Competição de robótica com participação da Vulkaris',
-    label: 'Competição',
-    span: 'normal',
-    date: getTodayDateWithTime(11, 20),
-    desc: 'Nossos robôs em campo oficial de competição contra a equipe adversária durante a fase de grupos.',
-  },
-  {
-    id: 'team-working-3',
-    src: '/team_working.png',
-    alt: 'Integração de componentes mecânicos pela Vulkaris',
-    label: 'Integração',
-    span: 'normal',
-    date: getTodayDateWithTime(9, 15),
-    desc: 'Montagem final da estrutura superior do robô integrando a tampa de acrílico com a estrutura metálica principal.',
-  },
-  {
-    id: 'robot-soccer-4',
-    src: '/projetos/futebol/robot_soccer.png',
-    alt: 'Robô calibrando sensores ópticos',
-    label: 'Calibração',
-    span: 'normal',
-    date: getTodayDateWithTime(13, 0),
-    desc: 'Ajuste fino dos sensores infravermelhos para detecção precisa das linhas do campo.',
-  },
-  {
-    id: 'team-working-4',
-    src: '/team_working.png',
-    alt: 'Reunião de planejamento da equipe',
-    label: 'Planejamento',
-    span: 'wide',
-    date: getTodayDateWithTime(10, 30),
-    desc: 'Equipe reunida discutindo cronogramas e objetivos para as próximas competições nacionais.',
-  },
-  {
-    id: 'robot-soccer-5',
-    src: '/projetos/futebol/robot_soccer.png',
-    alt: 'Testes de velocidade no campo',
-    label: 'Testes',
-    span: 'normal',
-    date: getTodayDateWithTime(17, 0),
-    desc: 'Teste de tração e resposta dinâmica dos motores sob diferentes regimes de bateria.',
-  },
-  {
-    id: 'team-working-5',
-    src: '/team_working.png',
-    alt: 'Projetando nova placa em CAD',
-    label: 'Design',
-    span: 'normal',
-    date: getTodayDateWithTime(14, 0),
-    desc: 'Modelagem tridimensional dos suportes internos do sensor ultrassônico no software CAD.',
-  },
-  {
-    id: 'robot-soccer-6',
-    src: '/projetos/futebol/robot_soccer.png',
-    alt: 'Robô em pose de vitória',
-    label: 'Vitória',
-    span: 'tall',
-    date: getTodayDateWithTime(16, 30),
-    desc: 'Foto oficial do robô campeão do desafio de futebol robótico após a final regional.',
-  },
-  {
-    id: 'team-working-6',
-    src: '/team_working.png',
-    alt: 'Manutenção rápida nos boxes',
-    label: 'Manutenção',
-    span: 'normal',
-    date: getTodayDateWithTime(11, 45),
-    desc: 'Troca preventiva de engrenagens desgastadas feita nos boxes em tempo recorde.',
+    instagramLink: null,
   },
 ];
 
@@ -199,6 +112,18 @@ export default function Gallery() {
                  role="listitem" id={`gallery-${item.id}`} onClick={() => setActiveItem(item)}>
               <img src={item.src} alt={item.alt} className="gallery__image" loading="lazy" />
               <div className="gallery__overlay" aria-hidden="true">
+                {item.instagramLink && (
+                  <a
+                    href={item.instagramLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gallery__instagram-link"
+                    aria-label="Ver publicação no Instagram"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <IconInstagram size={18} />
+                  </a>
+                )}
                 <span className="gallery__date">{item.date}</span>
                 <span className="gallery__label">{item.label}</span>
               </div>
@@ -262,6 +187,19 @@ export default function Gallery() {
                 <span className="gallery__modal-date">{activeItem.date}</span>
               </div>
               <p className="gallery__modal-desc">{activeItem.desc || activeItem.alt}</p>
+              {activeItem.instagramLink && (
+                <div className="gallery__modal-actions">
+                  <a
+                    href={activeItem.instagramLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gallery__modal-instagram-btn"
+                  >
+                    <IconInstagram size={16} />
+                    <span>Ver no Instagram</span>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
