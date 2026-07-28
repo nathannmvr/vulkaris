@@ -6,6 +6,7 @@ import Areas from './components/Areas';
 import Projects from './components/Projects';
 import Team from './components/Team';
 import Gallery from './components/Gallery';
+import Donate from './components/Donate';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ScrollProgress } from './components/ScrollProgress';
@@ -22,6 +23,7 @@ function App() {
         <Projects />
         <Team />
         <Gallery />
+        <Donate />
         <Contact />
       </main>
       <Footer />

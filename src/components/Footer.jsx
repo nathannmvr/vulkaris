@@ -47,6 +47,7 @@ export default function Footer() {
                   { label: 'Projetos',        href: '#projetos' },
                   { label: 'Equipe',          href: '#equipe' },
                   { label: 'Galeria',         href: '#galeria' },
+                  { label: 'Apoie a Equipe',  href: '#doacao' },
                   { label: 'Contato',         href: '#contato' },
                 ].map(link => (
                   <li key={link.href} role="listitem">

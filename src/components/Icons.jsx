@@ -307,3 +307,37 @@ export const IconChevronRight = ({ size = 24, ...props }) => (
     <polyline points="9 18 15 12 9 6"/>
   </svg>
 );
+
+export const IconPix = ({ size = 24, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M17.842 14.168l-2.614 2.614c-1.78 1.78-4.676 1.78-6.456 0l-2.614-2.614c-.604-.604-1.408-.936-2.262-.936s-1.658.332-2.262.936L.35 15.452c-1.248 1.248-1.248 3.272 0 4.52l2.048 2.048c1.248 1.248 3.272 1.248 4.52 0l2.614-2.614c.604-.604 1.408-.936 2.262-.936s1.658.332 2.262.936l2.614 2.614c1.248 1.248 3.272 1.248 4.52 0l2.048-2.048c1.248-1.248 1.248-3.272 0-4.52l-2.614-2.614c-.604-.604-1.408-.936-2.262-.936s-1.658.332-2.262.936zM6.158 9.832l2.614-2.614c1.78-1.78 4.676-1.78 6.456 0l2.614 2.614c.604.604 1.408.936 2.262.936s1.658-.332 2.262-.936l1.284-1.284c1.248-1.248 1.248-3.272 0-4.52l-2.048-2.048c-1.248-1.248-3.272-1.248-4.52 0l-2.614 2.614c-.604.604-1.408.936-2.262.936s-1.658-.332-2.262-.936L7.426 1.978c-1.248-1.248-3.272-1.248-4.52 0L.858 4.026c-1.248 1.248-1.248 3.272 0 4.52l2.614 2.614c.604.604 1.408.936 2.262.936s1.658-.332 2.262-.936z"/>
+  </svg>
+);
+
+export const IconGift = ({ size = 24, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <polyline points="20 12 20 22 4 22 4 12"/>
+    <rect x="2" y="7" width="20" height="5"/>
+    <line x1="12" y1="22" x2="12" y2="7"/>
+    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+  </svg>
+);
+
+export const IconSparkles = ({ size = 24, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+    <path d="M5 3v4M3 5h4M19 17v4M17 19h4"/>
+  </svg>
+);
+
+export const IconX = ({ size = 24, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+);
+

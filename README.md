@@ -308,7 +308,7 @@ Contact  → bg-secondary   │ Footer   → bg-primary
 ## 📬 Contato
 
 - **Instagram**: [@vulkaris_robotics](https://instagram.com/vulkaris_robotics)
-- **Email**: vulkarisrobotics@gmail.com
+- **Email**: vulkarisroboticsteam@gmail.com
 
 ---
 

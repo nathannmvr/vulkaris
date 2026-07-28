@@ -8,8 +8,8 @@ const contactItems = [
     id: 'email',
     icon: <IconMail size={26} />,
     label: 'E-mail',
-    value: 'vulkarisrobotics@gmail.com',
-    href: 'mailto:vulkarisrobotics@gmail.com',
+    value: 'vulkarisroboticsteam@gmail.com',
+    href: 'mailto:vulkarisroboticsteam@gmail.com',
     color: '#4FC3F7',
     actionType: 'copy',
   },
@@ -41,7 +41,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('vulkarisrobotics@gmail.com');
+    navigator.clipboard.writeText('vulkarisroboticsteam@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2200);
   };
