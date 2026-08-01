@@ -10,7 +10,27 @@ const parseDate = (dateString) => {
   return new Date(year, month - 1, day, hour, minute).getTime();
 };
 
-// Span: 1 = normal, 2 = tall (dobro da altura), 4 = wide (dobro da largura)
+/* 
+ * ==========================================
+ * INSTRUÇÕES PARA ADICIONAR UM NOVO ITEM
+ * ==========================================
+ * 
+ * Para adicionar uma foto ou vídeo na galeria, basta criar/editar um objeto abaixo.
+ * Os itens são ordenados automaticamente do mais recente pro mais antigo (pela data).
+ * 
+ * - id: Identificador único (minúsculo e sem espaço)
+ * - type: 'image' (para foto) ou 'video' (para vídeo)
+ * - src: Caminho do arquivo na pasta public/galeria/
+ * - alt: Texto alternativo para acessibilidade
+ * - label: Título curto que aparece quando passa o mouse por cima
+ * - span: Tamanho do quadrado na grade de fotos:
+ *         '1'    = Normal (Quadrado padrão)
+ *         'tall' = Alto (Retangular vertical, ocupa 2 espaços verticais)
+ *         'wide' = Largo (Retangular horizontal, ocupa 2 espaços horizontais)
+ * - date: Data da postagem (ex: '20/07/2026 às 13:29') - vital para a ordenação!
+ * - desc: Texto que aparece na descrição quando abre a foto em tela cheia
+ * - instagramLink: Link da postagem no instagram (opcional, remova a linha se não tiver)
+ */
 const galleryItems = [
   {
     id: 'novos_membros',

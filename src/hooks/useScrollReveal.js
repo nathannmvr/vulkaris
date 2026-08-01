@@ -13,6 +13,7 @@ export function useScrollReveal({
   threshold  = 0.12,
   rootMargin = '0px 0px -60px 0px',
   once       = true,
+  deps       = [],
 } = {}) {
   const ref = useRef(null);
 
@@ -34,7 +35,8 @@ export function useScrollReveal({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [threshold, rootMargin, once]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [threshold, rootMargin, once, ...deps]);
 
   return ref;
 }
@@ -48,6 +50,7 @@ export function useStaggerReveal({
   rootMargin = '0px 0px -40px 0px',
   staggerMs  = 100,
   once       = true,
+  deps       = [],
 } = {}) {
   const ref = useRef(null);
 
@@ -77,7 +80,8 @@ export function useStaggerReveal({
 
     observer.observe(container);
     return () => observer.disconnect();
-  }, [threshold, rootMargin, staggerMs, once]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [threshold, rootMargin, staggerMs, once, ...deps]);
 
   return ref;
 }

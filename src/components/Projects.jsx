@@ -3,10 +3,27 @@ import '../styles/Projects.css';
 import { IconStar, IconGithub, IconExternalLink, IconChevronLeft, IconChevronRight } from './Icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-// Por padrão o projeto destacado será o mais recente 
-// Se quiser escolher o basta colocar featured: true no projeto desejado
-// O projeto não destacado será ordenado por data (o mais recente primeiro)
-
+/* 
+ * ==========================================
+ * INSTRUÇÕES PARA ADICIONAR UM NOVO PROJETO
+ * ==========================================
+ * 
+ * Para adicionar ou editar um projeto, basta criar/editar um objeto abaixo.
+ * Os projetos são ordenados automaticamente do mais recente pro mais antigo (pela data).
+ * 
+ * - id: Identificador único (geralmente o nome, minúsculo e sem espaço)
+ * - title: Título do projeto
+ * - description: Descrição do projeto
+ * - status: 'Ativo', 'Concluído' ou 'Em Desenvolvimento' (a cor muda automaticamente)
+ * - image: Caminho da foto na pasta public/projetos/ (ex: '/projetos/foto.jpg')
+ * - tags: Lista de palavras-chave como ['Eletrônica', 'Programação']
+ * - featured: Se for `true`, ESSE será o destaque gigante lá no topo.
+ *             Se nenhum projeto tiver `true`, o sistema pega o mais novo 
+ *             automaticamente para ser o destaque.
+ * - github: Link para o repositório (opcional, coloque null se não tiver)
+ * - link: Link para ver o projeto (opcional, coloque null se não tiver)
+ * - date: Data de postagem (ex: '01/08/2026 às 17:00') - vital para a ordenação!
+ */
 const rawProjects = [
   {
     id: 'futebol-robos',

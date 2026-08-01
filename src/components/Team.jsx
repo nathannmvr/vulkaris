@@ -1,15 +1,35 @@
 import { useState } from 'react';
 import '../styles/Team.css';
-import { IconInstagram, IconCopy, IconCheck, IconUsers } from './Icons';
+import { IconInstagram, IconCopy, IconCheck, IconUsers, IconChevronLeft, IconChevronRight } from './Icons';
 import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 import { members } from './members';
 
 export default function Team() {
   const headerRef = useScrollReveal({ threshold: 0.3 });
-  const gridRef = useStaggerReveal({ staggerMs: 120, threshold: 0.1 });
   const ctaRef = useScrollReveal({ threshold: 0.5 });
   const [copiedId, setCopiedId] = useState(null);
   const [activeMember, setActiveMember] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const gridRef = useStaggerReveal({ staggerMs: 120, threshold: 0.1, deps: [currentPage] });
+  const itemsPerPage = 6;
+
+  const sortedMembers = [...members].sort((a, b) => a.name.localeCompare(b.name));
+  
+  const coloredMembers = sortedMembers.map((m, index) => ({
+    ...m,
+    color: index % 2 === 0 ? '#FF8C4A' : '#4FC3F7'
+  }));
+
+  const totalPages = Math.ceil(coloredMembers.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = coloredMembers.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    document.getElementById('team-grid-start')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleCopy = (e, text, id) => {
     e.preventDefault();
@@ -33,8 +53,11 @@ export default function Team() {
           <div className="divider" />
         </div>
 
-        <div className="team__grid" role="list" ref={gridRef}>
-          {members.map((member) => (
+        {/* Anchor for pagination scrolling */}
+        <div id="team-grid-start" style={{ scrollMarginTop: '100px' }} />
+
+        <div key={currentPage} className="team__grid" role="list" ref={gridRef}>
+          {currentItems.map((member) => (
             <div
               key={member.id}
               className="team__card glass-card reveal-up"
@@ -100,6 +123,39 @@ export default function Team() {
             </div>
           ))}
         </div>
+
+        {/* Paginação */}
+        {totalPages > 1 && (
+          <div className="team__pagination" role="navigation" aria-label="Paginação da equipe">
+            <button
+              className="team__page-btn"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              aria-label="Página anterior"
+            >
+              <IconChevronLeft size={16} />
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                className={`team__page-btn ${currentPage === page ? 'team__page-btn--active' : ''}`}
+                onClick={() => handlePageChange(page)}
+                aria-label={`Ir para a página ${page}`}
+                aria-current={currentPage === page ? 'page' : undefined}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              className="team__page-btn"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              aria-label="Próxima página"
+            >
+              <IconChevronRight size={16} />
+            </button>
+          </div>
+        )}
 
         <div className="team__cta reveal-scale" aria-label="Convite para contato" ref={ctaRef}>
           <h3 className="team__cta-text">Tem interesse em fazer parte da Vulkaris?</h3>
