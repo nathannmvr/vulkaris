@@ -101,13 +101,4 @@ export const members = [
     image: '/membros/Victor.jpeg',
     position: 'center 20%',
   },
-    {
-    id: 'nathan',
-    name: 'Nathan Maciel',
-    role: 'Programação',
-    description: 'Programação dos robôs e apoio nas integrações do sistema.',
-    icon: <IconCode size={30} />,
-    instagram: '@nathanmaciel5',
-    image: '/membros/Nathan.webp',
-  },
 ];

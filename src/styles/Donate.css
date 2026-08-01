@@ -479,3 +479,32 @@
   display: flex;
   justify-content: center;
 }
+
+/* Responsive Adjustments for Mobile */
+@media (max-width: 640px) {
+  .donate__main-card {
+    padding: 24px 16px;
+  }
+  
+  .donate__pix-input-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .donate__copy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .donate__pix-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .donate__materials-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
