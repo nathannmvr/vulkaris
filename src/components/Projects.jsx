@@ -3,109 +3,89 @@ import '../styles/Projects.css';
 import { IconStar, IconGithub, IconExternalLink, IconChevronLeft, IconChevronRight } from './Icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-const getTodayDateWithTime = (hour, minute) => {
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const yyyy = today.getFullYear();
-  const hh = String(hour).padStart(2, '0');
-  const min = String(minute).padStart(2, '0');
-  return `${dd}/${mm}/${yyyy} às ${hh}:${min}`;
-};
+// Por padrão o projeto destacado será o mais recente 
+// Se quiser escolher o basta colocar featured: true no projeto desejado
+// O projeto não destacado será ordenado por data (o mais recente primeiro)
 
-const projects = [
+const rawProjects = [
   {
     id: 'futebol-robos',
     title: 'Futebol de Robôs',
-    description: 'Desenvolvimento de robôs autônomos para competições de futebol robótico. O projeto envolve programação de IA, eletrônica avançada, modelagem e montagem completa dos robôs jogadores.',
-    status: 'Em Desenvolvimento',
-    statusColor: '#FF8C4A',
-    image: '/projetos/futebol/robot_soccer.png',
-    tags: ['Autonomia', 'IA', 'Eletrônica', 'Competição'],
-    featured: false,
+    description: 'Desenvolvimento de robôs interativos voltados para partidas de futebol, combinando mecânica, eletrônica e programação para criar demonstrações dinâmicas e envolventes em eventos.',
+    status: 'Ativo',
+    image: '/projetos/futebol/robot_soccer.jpg',
+    tags: ['Autônomo', 'Rádio Controle', 'Eletrônica', 'Demonstração'],
+    featured: false, 
     github: null,
     link: null,
-    date: getTodayDateWithTime(14, 30),
+    date: '01/08/2026 às 17:00', // Altere para a data real do post
   },
   {
     id: 'combate-robos',
     title: 'RoboClash',
     description: 'Plataforma de gerenciamento de robôs de combate, permitindo o cadastro de robôs, equipes, eventos e resultados das competições.',
     status: 'Ativo',
-    statusColor: '#4FC3F7',
     image: '/projetos/roboClash/roboClash.png',
     tags: ['Desenvolvimento', 'Web', 'Gestão', 'Competições'],
     featured: false,
     github: null,
     link: 'https://roboClash.vercel.app',
-    date: getTodayDateWithTime(16, 45),
+    date: '20/06/2026 às 16:45', // Altere para a data real do post
   },
   {
     id: 'CNC',
     title: 'CNC PCB',
     description: 'Uma máquina CNC impressa em 3D para fabricação de PCBs caseiras',
     status: 'Em Desenvolvimento',
-    statusColor: '#FF8C4A',
     image: '/projetos/CNC/cnc.png',
     tags: ['CNC', 'PCB', 'GRBL'],
     featured: false,
     github: 'https://github.com/pedro4896/CNC_PCB',
     link: null,
-    date: getTodayDateWithTime(20, 30),
+    date: '10/06/2026 às 20:30', // Altere para a data real do post
   },
   {
     id: 'Extrusora',
     title: 'Extrusora Garrafa PET',
     description: 'Uma maquina capaz de transformar garrafas Pets em filamentos para impressoras 3D',
     status: 'Em Desenvolvimento',
-    statusColor: '#FF8C4A',
     image: '/projetos/extrusora/extrusora.jpg',
     tags: ['3D', 'Reciclagem', 'Criatividade'],
     featured: false,
     github: null,
     link: null,
-    date: getTodayDateWithTime(20, 45),
-  },
-  {
-    id: 'automacao-geral',
-    title: 'Projetos de Automação',
-    description: 'Sistemas automatizados que integram sensores, atuadores e microcontroladores para resolver problemas práticos do dia a dia.',
-    status: 'Em Desenvolvimento',
-    statusColor: '#4FC3F7',
-    image: null,
-    tags: ['Sensores', 'Arduino', 'Automação'],
-    featured: false,
-    github: null,
-    link: null,
-    date: getTodayDateWithTime(10, 15),
-  },
-  {
-    id: 'prototipagem',
-    title: 'Prototipagem Rápida',
-    description: 'Criação de protótipos mecânicos com modelagem 3D e impressão 3D, permitindo testar e iterar rapidamente sobre os designs dos robôs.',
-    status: 'Ativo',
-    statusColor: '#FF8C4A',
-    image: null,
-    tags: ['3D Print', 'CAD', 'Prototipagem'],
-    featured: false,
-    github: null,
-    link: null,
-    date: getTodayDateWithTime(11, 0),
+    date: '10/07/2026 às 20:45', // Altere para a data real do post
   },
   {
     id: 'inmoov',
     title: 'Braço Robótico InMoov',
     description: 'Desenvolvimento e montagem de um braço robótico de tamanho real de código aberto. Envolve impressão 3D de todas as partes, controle de servomotores, reconhecimento de voz e visão computacional.',
     status: 'Ativo',
-    statusColor: '#4FC3F7',
     image: '/projetos/inmoov/inmoov.png',
     tags: ['Braço Robótico', 'Impressão 3D', 'Visão Computacional', 'C++', 'Python', "OpenCV"],
-    featured: true,
+    featured: false,
     github: null,
     link: null,
-    date: getTodayDateWithTime(9, 0),
+    date: '25/07/2026 às 09:00', // Altere para a data real do post
   },
 ];
+
+const statusColors = {
+  'Em Desenvolvimento': '#FF8C4A',
+  'Ativo': '#4FC3F7',
+};
+
+const parseDate = (dateString) => {
+  const [datePart, timePart] = dateString.split(' às ');
+  const [day, month, year] = datePart.split('/');
+  const [hour, minute] = timePart.split(':');
+  return new Date(year, month - 1, day, hour, minute).getTime();
+};
+
+const projects = rawProjects.map(p => ({
+  ...p,
+  statusColor: statusColors[p.status] || '#718096'
+})).sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
 export default function Projects() {
   const headerRef = useScrollReveal({ threshold: 0.3 });
@@ -116,8 +96,11 @@ export default function Projects() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
-  const regularProjects = projects.filter(p => !p.featured);
-  const gridItems = [...regularProjects];
+  let featuredProjects = projects.filter(p => p.featured);
+  if (featuredProjects.length === 0 && projects.length > 0) {
+    featuredProjects = [projects[0]];
+  }
+  const gridItems = projects.filter(p => !featuredProjects.includes(p));
 
   const totalPages = Math.ceil(gridItems.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -145,7 +128,7 @@ export default function Projects() {
 
         {/* Projeto em destaque */}
         <div>
-          {projects.filter(p => p.featured).map(project => (
+          {featuredProjects.map(project => (
             <div key={project.id} className="projects__featured glass-card reveal-up" ref={featuredRef} id={`project-${project.id}`}
                  role="article" aria-label={`Projeto em destaque: ${project.title}`}
                  onClick={() => setActiveProject(project)} style={{ cursor: 'pointer', '--project-color': project.statusColor }}>

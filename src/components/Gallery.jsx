@@ -3,14 +3,11 @@ import '../styles/Gallery.css';
 import { IconInstagram, IconCamera, IconChevronLeft, IconChevronRight, IconPlay } from './Icons';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
-const getTodayDateWithTime = (hour, minute) => {
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const yyyy = today.getFullYear();
-  const hh = String(hour).padStart(2, '0');
-  const min = String(minute).padStart(2, '0');
-  return `${dd}/${mm}/${yyyy} às ${hh}:${min}`;
+const parseDate = (dateString) => {
+  const [datePart, timePart] = dateString.split(' às ');
+  const [day, month, year] = datePart.split('/');
+  const [hour, minute] = timePart.split(':');
+  return new Date(year, month - 1, day, hour, minute).getTime();
 };
 
 // Span: 1 = normal, 2 = tall (dobro da altura), 4 = wide (dobro da largura)
@@ -22,7 +19,7 @@ const galleryItems = [
     alt: 'Divulgação dos novos membros da Equipe Vulkaris',
     label: 'Novos Membros',
     span: 'wide',
-    date: getTodayDateWithTime(13, 29),
+    date: '20/07/2026 às 13:29', // Altere para a data real do post
     desc: 'Divulgação dos novos membros da Equipe Vulkaris.',
     instagramLink: 'https://www.instagram.com/p/DavNBz5Fu0f/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
   },
@@ -33,11 +30,11 @@ const galleryItems = [
     alt: 'Vídeo de divulgação da Equipe Vulkaris',
     label: 'Vídeo Divulgação',
     span: 'normal',
-    date: '15/06/2026 às 10:00',
+    date: '25/05/2026 às 10:00',
     desc: 'Vídeo de divulgação da Equipe Vulkaris.',
     instagramLink: 'https://www.instagram.com/reel/DZm5_00SIzQ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
   },
-];
+].sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
 export default function Gallery() {
   const headerRef = useScrollReveal({ threshold: 0.3 });
