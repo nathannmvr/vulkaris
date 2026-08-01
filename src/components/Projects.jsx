@@ -18,7 +18,7 @@ const rawProjects = [
     featured: false, 
     github: null,
     link: null,
-    date: '01/08/2026 às 17:00', // Altere para a data real do post
+    date: '31/07/2026 às 17:00', // Altere para a data real do post
   },
   {
     id: 'combate-robos',
