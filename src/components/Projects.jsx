@@ -32,7 +32,7 @@ const rawProjects = [
     status: 'Ativo',
     image: '/projetos/futebol/robot_soccer.jpg',
     tags: ['Autônomo', 'Rádio Controle', 'Eletrônica', 'Demonstração'],
-    featured: false, 
+    featured: true, 
     github: null,
     link: null,
     date: '31/07/2026 às 17:00', // Altere para a data real do post
@@ -84,6 +84,18 @@ const rawProjects = [
     github: null,
     link: null,
     date: '25/07/2026 às 09:00', // Altere para a data real do post
+  },
+  {
+    id: 'maker-verse',
+    title: 'MakerVerse',
+    description: 'Um jogo destinado ao público infantil curioso e criativo, que busca estimular a exploração da ciência, tecnologia e eletrônica por meio de desafios interativos e experiências inspiradas na cultura maker.',
+    status: 'Ativo',
+    image: '/projetos/makerVerse/makerVerse.png',
+    tags: ['Game', 'Maker', 'DIY', 'Eletrônica'],
+    featured: false,
+    github: null,
+    link: 'https://makerverse.vercel.app/',
+    date: '02/08/2026 às 02:12', // Altere para a data real do post
   },
 ];
 
