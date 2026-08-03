@@ -38,7 +38,7 @@ const galleryItems = [
     src: '/galeria/novosMembros.png',
     alt: 'Divulgação dos novos membros da Equipe Vulkaris',
     label: 'Novos Membros',
-    span: 'wide',
+    span: 'normal',
     date: '20/07/2026 às 13:29', // Altere para a data real do post
     desc: 'Divulgação dos novos membros da Equipe Vulkaris.',
     instagramLink: 'https://www.instagram.com/p/DavNBz5Fu0f/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
@@ -53,6 +53,17 @@ const galleryItems = [
     date: '25/05/2026 às 10:00',
     desc: 'Vídeo de divulgação da Equipe Vulkaris.',
     instagramLink: 'https://www.instagram.com/reel/DZm5_00SIzQ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+  },
+  {
+    id: 'futebol_robo',
+    type: 'image',
+    src: '/galeria/futebolRobos.PNG',
+    alt: 'Fultebol de Robôs',
+    label: 'Fultebol de Robôs',
+    span: 'normal',
+    date: '03/08/2026 às 20:00',
+    desc: '⚽🤖 Nossa primeira oficina e, com certeza, uma experiência que vamos levar com a gente!\nnParticipar do Circuito das Juventudes foi muito especial para toda a equipe da VULKARIS Robotics.\n\nDurante a oficina de Futebol Robô, mostramos como o jogo funciona, explicamos todo o processo de criação e, depois, chegou a melhor parte: colocar todo mundo para jogar! No final, os participantes competiram entre si e os vencedores receberam o Troféu VULKARIS. 🏆',
+    instagramLink: 'https://www.instagram.com/p/DbmBMO8Fnzi/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
   },
 ].sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
